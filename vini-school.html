@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --bg: #f2e8d5;
+    --surface: #e9dcc3;
+    --surface-2: #e3d4b8;
+    --line: #cbb98f;
+    --amber: #8a4a1f;
+    --text: #241708;
+    --muted: #5c4a34;
+    --muted-2: #7a6a52;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Source Serif 4', Georgia, serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--amber); color:#f2e8d5;}
+  h1,h2,h3,.display{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{color:var(--amber); text-decoration-thickness:1px;}
+  a:hover{color:#a85f2a;}
+
+  .filmstrip{
+    position:sticky; top:0; z-index:50;
+    background:rgba(242,232,213,0.96);
+    border-bottom:1px solid var(--line);
+    overflow-x:auto; white-space:nowrap;
+    padding:10px 14px;
+  }
+  .filmstrip::-webkit-scrollbar{height:4px;}
+  .filmstrip::-webkit-scrollbar-thumb{background:var(--line);}
+  .filmstrip a{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px;
+    color:var(--muted); text-decoration:none;
+    padding:6px 10px; margin-right:2px; border:1px solid transparent; border-radius:2px;
+  }
+  .filmstrip a:hover{ color:var(--amber); border-color:var(--line); }
+  .filmstrip a .num{ color:var(--amber); font-weight:600; }
+  .filmstrip a.done .num::after{ content:" ✓"; }
+
+  .hero{ position:relative; padding:64px 20px 48px; max-width:720px; margin:0 auto; }
+  .aperture{ width:88px; height:88px; margin-bottom:24px; }
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--amber); margin-bottom:14px; }
+  .hero h1{ font-size:clamp(30px, 6vw, 46px); line-height:1.1; margin:0 0 18px; color:var(--text); }
+  .hero p{ font-size:16.5px; color:var(--muted); max-width:60ch; margin:0 0 12px; }
+  .hero .signature{ font-family:'Fraunces', serif; font-style:italic; font-weight:500; color:var(--amber); font-size:16px; margin-top:20px; }
+
+  main{ max-width:720px; margin:0 auto; padding:0 20px 120px; }
+  .chapter{ padding:50px 0 36px; border-top:1px solid var(--line); scroll-margin-top:64px; }
+  .chapter:first-child{ border-top:none; }
+  .chapter-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:4px; }
+  .frame-num{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--amber); border:1px solid var(--amber); padding:2px 7px; border-radius:2px; flex-shrink:0; }
+  .chapter h2{ font-size:clamp(22px, 4vw, 29px); margin:0; color:var(--text); }
+  .chapter .kicker{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.08em; margin:2px 0 20px 62px; }
+  .chapter .story p{ color:#2b1d10; font-size:16px; }
+  .chapter .story p:first-of-type::first-letter{
+    font-family:'Fraunces', serif; font-size:2.4em; float:left; line-height:0.8;
+    padding-right:7px; padding-top:3px; color:var(--amber); font-weight:600;
+  }
+
+  .diagram{ background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:18px; margin:20px 0; text-align:center; }
+  .diagram svg{ max-width:100%; height:auto; }
+  .diagram figcaption{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted-2); margin-top:10px; text-transform:uppercase; letter-spacing:0.05em; }
+
+  .note{ background:var(--surface); border-left:3px solid var(--amber); padding:15px 17px; margin:20px 0; border-radius:0 4px 4px 0; font-size:14.5px; color:var(--muted); }
+  .note strong{ color:var(--amber); font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:10.5px; text-transform:uppercase; letter-spacing:0.07em; display:block; margin-bottom:6px;}
+
+  .task{ background:linear-gradient(180deg, #efdcb2, #e9dcc3); border:1px solid #c9a55f; border-radius:6px; padding:18px 18px 16px; margin:22px 0; }
+  .task .tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em; color:var(--amber); font-weight:600; margin-bottom:8px; display:block; }
+  .task p{ margin:0 0 10px; font-size:15px; color:#2b1d10; }
+  .task a{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; }
+
+  h3.subhead{ font-size:14px; font-family:'IBM Plex Mono', monospace; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted-2); margin:28px 0 12px; display:flex; align-items:center; gap:10px; }
+  h3.subhead::after{ content:""; flex:1; height:1px; background:var(--line); }
+
+  ul.learnlist{ margin:0 0 16px; padding-left:0; list-style:none; }
+  ul.learnlist li{ padding:8px 0 8px 20px; position:relative; color:#2b1d10; font-size:15px; border-bottom:1px solid var(--line); }
+  ul.learnlist li::before{ content:"—"; position:absolute; left:0; color:var(--amber); }
+
+  .resource-grid{ display:flex; flex-direction:column; gap:8px; margin-bottom:8px; }
+  .resource{ display:flex; justify-content:space-between; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--line); padding:11px 14px; border-radius:4px; text-decoration:none; transition:border-color .15s; }
+  .resource:hover{ border-color:var(--amber); }
+  .resource .rt{ color:var(--text); font-size:14px; font-family:'Source Serif 4', serif;}
+  .resource .rtype{ font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:var(--bg); background:var(--amber); padding:3px 7px; border-radius:2px; text-transform:uppercase; letter-spacing:0.05em; flex-shrink:0; }
+  .resource .rtype.watch{ background:#c9b98e; color:#241708; }
+  .resource .rtype.film{ background:#b39a68; color:#241708; }
+
+  table.settings{ width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:13.5px; }
+  table.settings th, table.settings td{ border:1px solid var(--line); padding:9px 10px; text-align:left; }
+  table.settings th{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; color:var(--amber); background:var(--surface-2); letter-spacing:0.04em; }
+  table.settings td{ color:var(--muted); }
+  table.settings tr:hover td{ color:var(--text); }
+
+  .track-row{ display:flex; align-items:center; gap:10px; margin-top:24px; padding-top:16px; border-top:1px dashed var(--line); }
+  .track-row input{ width:17px; height:17px; accent-color:var(--amber); }
+  .track-row label{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); cursor:pointer; }
+
+  footer{ max-width:720px; margin:0 auto; padding:36px 20px 80px; color:var(--muted-2); font-size:12.5px; font-family:'IBM Plex Mono', monospace; border-top:1px solid var(--line); }
+
+  @media (max-width:600px){
+    .hero{ padding:52px 16px 36px; }
+    .chapter .kicker{ margin-left:0; margin-top:-4px; }
+    .chapter-head{ flex-wrap:wrap; }
+  }
+
+  .quiz{ background:var(--surface-2); border:1px solid var(--line); border-radius:6px; padding:18px 18px 16px; margin:22px 0; }
+  .quiz h3.subhead{ margin-top:0; }
+  .quiz .q{ margin-bottom:16px; }
+  .quiz .qtext{ font-size:14.5px; color:var(--text); margin:0 0 8px; font-weight:600; }
+  .quiz label{ display:block; font-size:14px; color:var(--muted); padding:6px 10px; margin-bottom:4px; border:1px solid var(--line); border-radius:4px; cursor:pointer; }
+  .quiz label:hover{ border-color:var(--amber); }
+  .quiz label.correct{ border-color:#3a7d3a; background:rgba(58,125,58,0.15); color:var(--text); }
+  .quiz label.incorrect{ border-color:#a13a3a; background:rgba(161,58,58,0.15); color:var(--text); }
+  .quiz input[type=radio]{ margin-right:8px; accent-color:var(--amber); }
+  .quizCheck{ background:var(--amber); color:var(--bg); border:none; padding:9px 16px; border-radius:5px; font-family:'IBM Plex Mono', monospace; font-size:12px; cursor:pointer; margin-top:4px; }
+  .quizResult{ margin-top:10px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--amber); }
+
+
+:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--accent:#8a3a12;--accent-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.65;}
+h1,h2,.display{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+a{color:var(--accent);}
+main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
+.back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--muted);}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin:24px 0 12px;}
+h1{font-size:clamp(26px,6vw,38px);line-height:1.1;margin:0 0 14px;}
+main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30px;}
+.chapter-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px;}
+.chapter-card .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);}
+.chapter-card h3{margin:6px 0 6px;font-size:17px;}
+.chapter-card p{margin:0;color:var(--muted);font-size:14px;}
+.tag{display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-2);border:1px solid var(--line);padding:3px 8px;border-radius:3px;}
+.notebook{background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:20px;margin-top:36px;}
+.notebook h2{font-size:19px;margin:0 0 8px;}
+.notebook p.sub{color:var(--muted);font-size:14px;margin:0 0 16px;}
+.cat{margin-bottom:14px;}
+.cat label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;color:var(--muted-2);margin-bottom:6px;}
+.cat textarea{width:100%;min-height:60px;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:10px;color:var(--text);font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;}
+.savebar{display:flex;align-items:center;gap:10px;margin-top:6px;}
+.savebar button{background:var(--accent);color:var(--bg);border:none;padding:9px 16px;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;}
+.savebar button:hover{background:var(--accent-hover);}
+.savebar .status{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted-2);}
+
+
+:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--amber:#8a3a12;--amber-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.7;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--amber);}
+.back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--muted);}
+main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin:24px 0 12px;}
+h1{font-size:clamp(26px,6vw,38px);line-height:1.1;margin:0 0 14px;}
+main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 24px;}
+.note{background:var(--surface-2);border-left:3px solid var(--amber);padding:14px 16px;border-radius:0 6px 6px 0;font-size:14.5px;color:var(--muted);margin-bottom:30px;}
+.chapter-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px;}
+.chapter-card .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--amber);}
+.chapter-card h3{margin:6px 0 6px;font-size:17px;}
+.chapter-card p{margin:0;color:var(--muted);font-size:14px;}
+.tag{display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-2);border:1px solid var(--line);padding:3px 8px;border-radius:3px;}
+.chapter{padding:36px 0 30px;border-top:1px solid var(--line);}
+.chapter-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;}
+.frame-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);border:1px solid var(--amber);padding:2px 7px;border-radius:2px;}
+.chapter h2{font-size:22px;margin:0;}
+.story p{color:#2a1f13;font-size:15px;}
+h4.sub{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-2);margin:22px 0 10px;}
+.example{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin:12px 0;font-size:14.5px;}
+.example .lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--amber);display:block;margin-bottom:6px;}
+.task{background:var(--surface);border:1px solid #c9ad7a;border-radius:6px;padding:16px 18px;margin:18px 0;}
+.task .tag2{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--amber);font-weight:600;display:block;margin-bottom:6px;}
+.task p{margin:0 0 8px;font-size:14.5px;}
+.quiz{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:18px 0;}
+.quiz h3{font-size:13px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--muted-2);margin:0 0 12px;}
+.quiz .q{margin-bottom:14px;}
+.quiz .qtext{font-size:14.5px;font-weight:600;margin:0 0 8px;}
+.quiz label{display:block;font-size:14px;color:var(--muted);padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;}
+.quiz label.correct{border-color:#3a7d3a;background:rgba(58,125,58,0.15);color:var(--text);}
+.quiz label.incorrect{border-color:#a13a3a;background:rgba(161,58,58,0.15);color:var(--text);}
+.quiz input{margin-right:8px;accent-color:var(--amber);}
+.quizCheck{background:var(--amber);color:var(--bg);border:none;padding:8px 14px;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;}
+.quizResult{margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);}
+
+
+:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--accent:#8a3a12;--accent-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.65;}
+h1,h2,.display{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--accent);}
+main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
+.back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--muted);}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin:24px 0 12px;}
+h1{font-size:clamp(26px,6vw,38px);line-height:1.1;margin:0 0 14px;}
+main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30px;}
+.chapter-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px;}
+.chapter-card .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);}
+.chapter-card h3{margin:6px 0 6px;font-size:17px;}
+.chapter-card p{margin:0;color:var(--muted);font-size:14px;}
+.tag{display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-2);border:1px solid var(--line);padding:3px 8px;border-radius:3px;}
+
+
+:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--amber:#8a3a12;--amber-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.7;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--amber);}
+.back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--muted);}
+main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin:24px 0 12px;}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.1;margin:0 0 16px;}
+main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30px;}
+.chapter{padding:40px 0 30px;border-top:1px solid var(--line);}
+.chapter:first-of-type{border-top:none;}
+.chapter-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;}
+.frame-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);border:1px solid var(--amber);padding:2px 7px;border-radius:2px;}
+.chapter h2{font-size:22px;margin:0;}
+.story p{color:#2a1f13;font-size:15.5px;}
+.story p:first-of-type::first-letter{font-family:'Fraunces',serif;font-size:2.2em;float:left;line-height:0.8;padding-right:6px;color:var(--amber);font-weight:600;}
+.task{background:var(--surface);border:1px solid #c9ad7a;border-radius:6px;padding:16px 18px;margin:18px 0;}
+.task .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--amber);font-weight:600;display:block;margin-bottom:6px;}
+.task p{margin:0 0 8px;font-size:14.5px;}
+.quiz{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:18px 0;}
+.quiz h3{font-size:13px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--muted-2);margin:0 0 12px;}
+.quiz .q{margin-bottom:14px;}
+.quiz .qtext{font-size:14.5px;font-weight:600;margin:0 0 8px;}
+.quiz label{display:block;font-size:14px;color:var(--muted);padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;}
+.quiz label.correct{border-color:#3a7d3a;background:rgba(58,125,58,0.15);color:var(--text);}
+.quiz label.incorrect{border-color:#a13a3a;background:rgba(161,58,58,0.15);color:var(--text);}
+.quiz input{margin-right:8px;accent-color:var(--amber);}
+.quizCheck{background:var(--amber);color:var(--bg);border:none;padding:8px 14px;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;}
+.quizResult{margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);}
+.track-row{display:flex;align-items:center;gap:10px;margin-top:16px;}
+.track-row input{width:16px;height:16px;accent-color:var(--amber);}
+.track-row label{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
+
+
+.topnav{position:sticky;top:0;z-index:100;background:rgba(242,232,213,0.97);border-bottom:1px solid #cdb98f;padding:10px 16px;display:flex;gap:6px;overflow-x:auto;white-space:nowrap;}
+.topnav button{font-family:'IBM Plex Mono',monospace;font-size:11.5px;background:transparent;border:1px solid transparent;color:#5c4a34;padding:7px 12px;border-radius:4px;cursor:pointer;text-transform:uppercase;letter-spacing:0.05em;}
+.topnav button:hover{border-color:#cdb98f;color:#8a3a12;}
+.topnav button.active{background:#8a3a12;color:#f2e8d5;}
+.page-section{display:none;}
+.page-section.active{display:block;}
+.home-hero{max-width:720px;margin:0 auto;padding:50px 20px 20px;}
+.home-hero h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(26px,6vw,38px);margin:0 0 14px;color:#241a0f;}
+.home-hero p{color:#5c4a34;font-size:15.5px;max-width:62ch;margin:0 0 30px;}
+.home-grid{max-width:720px;margin:0 auto;padding:0 20px 80px;display:flex;flex-direction:column;gap:14px;}
+.home-card{display:block;text-align:left;width:100%;background:#e9dcc0;border:1px solid #cdb98f;border-radius:8px;padding:20px 22px;cursor:pointer;font-family:'Source Serif 4',serif;color:#241a0f;transition:border-color .15s;}
+.home-card:hover{border-color:#8a3a12;}
+.home-card .status{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.07em;padding:3px 8px;border-radius:3px;display:inline-block;margin-bottom:10px;}
+.home-card .status.live{background:#8a3a12;color:#f2e8d5;}
+.home-card .status.partial{background:#e2d3ae;color:#7d6a4e;border:1px solid #cdb98f;}
+.home-card h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 6px;}
+.home-card p{margin:0;color:#5c4a34;font-size:14.5px;}
+
+/* Tile-based chapter navigation */
+.chapter-tile-grid{max-width:720px;margin:0 auto;padding:10px 20px 40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+.chapter-tile{background:#e9dcc0;border:1px solid #cdb98f;border-radius:8px;padding:14px 12px;cursor:pointer;text-align:left;font-family:'Source Serif 4',serif;transition:transform .12s, border-color .12s;}
+.chapter-tile:hover{border-color:#8a3a12;transform:translateY(-2px);}
+.chapter-tile .tnum{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#8a3a12;display:block;margin-bottom:6px;}
+.chapter-tile .ttitle{font-size:13.5px;color:#241a0f;font-weight:600;line-height:1.3;}
+.chapter-tile.done{background:#c8dcb8;border-color:#5c8a3a;}
+.chapter-tile.done .tnum{color:#3a5c1f;}
+.chapter-tile.done .ttitle{color:#22380f;}
+.chapter-tile.done .tnum::after{content:" \2713";}
+.chapter-tile.locked{opacity:0.55;cursor:default;}
+.chapter-tile.locked:hover{transform:none;border-color:#cdb98f;}
+.chapter-tile .tnote{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#7d6a4e;text-transform:uppercase;margin-top:6px;}
+.chapter-view{display:none;}
+.chapter-view.open{display:block;}
+.chapter-back{font-family:'IBM Plex Mono',monospace;font-size:12px;background:none;border:none;color:#5c4a34;cursor:pointer;padding:16px 20px 0;display:block;}
+.chapter-back:hover{color:#8a3a12;}
+.cat-filter{max-width:720px;margin:14px auto 0;padding:0 20px;display:flex;gap:6px;flex-wrap:wrap;}
+.cat-filter button{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;background:#e2d3ae;border:1px solid #cdb98f;color:#5c4a34;padding:6px 12px;border-radius:14px;cursor:pointer;}
+.cat-filter button.active{background:#8a3a12;color:#f2e8d5;border-color:#8a3a12;}
+.filmstrip{display:none !important;}
+
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+<button class="active" data-page="home" onclick="showPage('home')">Home</button>
+<button data-page="film" onclick="showPage('film')">Film & Photography</button>
+<button data-page="upsc" onclick="showPage('upsc')">History / Geo / Polity</button>
+<button data-page="math" onclick="showPage('math')">Math & Science</button>
+<button data-page="music" onclick="showPage('music')">Music</button>
+<button data-page="coffee" onclick="showPage('coffee')">Coffee</button>
+
+</nav>
+
+
+<div id="page-home" class="page-section active">
+  <div class="home-hero">
+    <div class="eyebrow" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a3a12;margin-bottom:14px;">The Whole Curriculum</div>
+    <h1>Everything you're learning, in one place.</h1>
+    <p>One file, always. Tap a course below, then tap a chapter tile to open just that chapter. Tiles turn green once you mark them done.</p>
+  </div>
+  <div class="home-grid">
+    <button class="home-card" onclick="showPage('film')">
+      <span class="status live">Fully built</span>
+      <h2>Film & Photography</h2>
+      <p>The story of light, lenses, and cameras — from the camera obscura to your own Sony a7S. 11 chapters, tasks, quizzes, reading lists.</p>
+    </button>
+    <button class="home-card" onclick="showPage('upsc')">
+      <span class="status partial">Full syllabus + Chapter 1 built</span>
+      <h2>History, Geography, Polity & Current Affairs</h2>
+      <p>Filter by section, full Prelims/Mains/Interview syllabus, official past papers, Chapter 1 on colonialism, and a current affairs notebook.</p>
+    </button>
+    <button class="home-card" onclick="showPage('math')">
+      <span class="status partial">Chapters 1-2 built</span>
+      <h2>Math & Science, from Class 5</h2>
+      <p>Class 5-6 basics and Class 7-8 algebra/science built with diagrams, easy videos, and reading lists.</p>
+    </button>
+    <button class="home-card" onclick="showPage('music')">
+      <span class="status partial">Chapter list ready</span>
+      <h2>Music, from the Beginning</h2>
+      <p>Where music started, instruments, world traditions, Indian classical and folk, and the artists worth knowing.</p>
+    </button>
+    <button class="home-card" onclick="showPage('coffee')">
+      <span class="status live">Fully built</span>
+      <h2>Becoming a Coffee Nerd</h2>
+      <p>From the goat legend in Ethiopia to brewing methods to India's own filter coffee tradition. All 7 chapters, with reading lists.</p>
+    </button>
+  </div>
+</div>
+
+<div id="page-film" class="page-section" data-course="film">
+
+
+  <section class="chapter" id="ch0">
+    <div class="chapter-head"><span class="frame-num">00</span><h2>Start Here</h2></div>
+    <p class="kicker">how this course works</p>
+    <div class="story">
+      <p>Before we start, here is how we're going to work together.</p>
+      <p>Every chapter is a story first. I'll tell you why something was invented, then show you how it works, then give you a small task to go shoot it yourself. Don't skip the task. Reading about light is not the same as standing outside at 6pm and watching what it does to a face.</p>
+      <p>We are learning ideas first, camera second. Your Sony a7S has its own full chapter near the end, once you already understand what light, aperture, and shutter speed are actually doing. Until then, just use whatever camera is easiest to grab — your phone is perfectly fine for these early tasks.</p>
+      <p>You told me you might want to teach this to others on YouTube one day. Keep that thought close. The best way to know you've really learned something is to try explaining it to someone else in plain words.</p>
+    </div>
+    <div class="quiz" data-quiz="ch0">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">What should you do after every chapter?</p>
+<label><input type="radio" name="ch0-q0" value="a"> Skip to the next one</label>
+<label><input type="radio" name="ch0-q0" value="b"> Do the task</label>
+<label><input type="radio" name="ch0-q0" value="c"> Only read, never shoot</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">Why keep the idea of teaching this later in mind?</p>
+<label><input type="radio" name="ch0-q1" value="a"> It's required for a YouTube algorithm</label>
+<label><input type="radio" name="ch0-q1" value="b"> Explaining something simply proves you understand it</label>
+<label><input type="radio" name="ch0-q1" value="c"> It's not important</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch0" id="cb0"><label for="cb0">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch1">
+    <div class="chapter-head"><span class="frame-num">01</span><h2>Capturing Light</h2></div>
+    <p class="kicker">the camera obscura, and what aperture really is</p>
+    <div class="story">
+      <p>A long time ago, people found something strange. Take a dark room, make one small hole in a wall, and light from outside will pass through that hole and throw a picture of the outside world onto the opposite wall — upside down, but clear. This is called a <a href="https://en.wikipedia.org/wiki/Camera_obscura" target="_blank">camera obscura</a>. It's the same idea as how your own eye works, just on a bigger scale. People knew about this for over a thousand years before anyone worked out how to keep the image, not just watch it.</p>
+      <p>The man who finally kept one was a French inventor named <a href="https://en.wikipedia.org/wiki/Nic%C3%A9phore_Ni%C3%A9pce" target="_blank">Niépce</a>. In the 1820s, he made the first photo that lasted — but the exposure took at least eight hours, maybe longer. Picture setting up one shot and waiting an entire day to see if it worked. A few years later, his partner <a href="https://en.wikipedia.org/wiki/Louis_Daguerre" target="_blank">Daguerre</a> found a way to bring that time down to minutes, and photography became something people could actually use.</p>
+      <p>Here is the point I want you to remember: the whole early history of photography is one long fight to control how much light comes in, and for how long. That fight became a small dial on your camera called <strong>aperture</strong>. The size of that old hole in the wall — that's your aperture, just modern.</p>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 320 140" width="100%">
+        <rect x="10" y="20" width="120" height="100" fill="none" stroke="#7a6a52" stroke-width="1.5"/>
+        <line x1="130" y1="70" x2="132" y2="70" stroke="#8a4a1f" stroke-width="3"/>
+        <line x1="20" y1="35" x2="132" y2="70" stroke="#8a4a1f" stroke-width="1" opacity="0.7"/>
+        <line x1="20" y1="105" x2="132" y2="70" stroke="#8a4a1f" stroke-width="1" opacity="0.7"/>
+        <polygon points="10,25 30,25 20,45" fill="none" stroke="#241708" stroke-width="1.5"/>
+        <rect x="230" y="20" width="70" height="100" fill="none" stroke="#7a6a52" stroke-width="1.5"/>
+        <polygon points="245,105 265,105 255,85" fill="none" stroke="#8a4a1f" stroke-width="1.5"/>
+        <text x="20" y="15" fill="#5c4a34" font-size="9" font-family="IBM Plex Mono">outside world</text>
+        <text x="120" y="135" fill="#5c4a34" font-size="9" font-family="IBM Plex Mono">small hole</text>
+        <text x="230" y="15" fill="#5c4a34" font-size="9" font-family="IBM Plex Mono">flipped image inside</text>
+      </svg>
+      <figcaption>Camera obscura — light crosses through a small hole and flips the image</figcaption>
+    </figure>
+
+    <h3 class="subhead">What aperture controls</h3>
+    <p style="color:#2b1d10; font-size:15px;">Aperture is measured in f-stops. A smaller number means a wider opening — more light comes in, and the background goes soft and blurry. A bigger number means a narrower opening — less light, and more of the scene stays sharp. It feels backwards at first. That's normal.</p>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 300 100" width="100%">
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#7a6a52"/>
+        <circle cx="50" cy="50" r="30" fill="#8a4a1f"/>
+        <text x="50" y="98" fill="#5c4a34" font-size="10" font-family="IBM Plex Mono" text-anchor="middle">f/1.8 — wide open</text>
+        <circle cx="150" cy="50" r="38" fill="none" stroke="#7a6a52"/>
+        <circle cx="150" cy="50" r="18" fill="#8a4a1f"/>
+        <text x="150" y="98" fill="#5c4a34" font-size="10" font-family="IBM Plex Mono" text-anchor="middle">f/5.6 — middle</text>
+        <circle cx="250" cy="50" r="38" fill="none" stroke="#7a6a52"/>
+        <circle cx="250" cy="50" r="7" fill="#8a4a1f"/>
+        <text x="250" y="98" fill="#5c4a34" font-size="10" font-family="IBM Plex Mono" text-anchor="middle">f/16 — narrow</text>
+      </svg>
+      <figcaption>The bigger the number, the smaller the hole — less light, more sharpness</figcaption>
+    </figure>
+
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Find one still subject — a cup, a plant, your grandfather sitting still. Take three photos of it from the same spot: widest aperture your camera allows, a middle setting, and the narrowest. Look at how the background changes each time. Don't worry about it looking "good" — just notice the difference.</p>
+      <a href="https://www.youtube.com/results?search_query=aperture+blur+background+comparison+f1.8+vs+f16" target="_blank">See how others show this same comparison →</a>
+    </div>
+
+    <h3 class="subhead">Read and watch</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/History_of_photography" target="_blank"><span class="rt">History of photography, full story</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=history+of+photography+documentary+camera+obscura+to+daguerreotype" target="_blank"><span class="rt">Camera obscura to daguerreotype, in video</span><span class="rtype watch">Watch</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch1">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">A smaller f-stop number means:</p>
+<label><input type="radio" name="ch1-q0" value="a"> A narrower opening, less light</label>
+<label><input type="radio" name="ch1-q0" value="b"> A wider opening, more light</label>
+<label><input type="radio" name="ch1-q0" value="c"> No effect on light</label>
+</div>
+<div class="q" data-answer="c">
+<p class="qtext">Niepce's first permanent photo took about:</p>
+<label><input type="radio" name="ch1-q1" value="a"> A few seconds</label>
+<label><input type="radio" name="ch1-q1" value="b"> A few minutes</label>
+<label><input type="radio" name="ch1-q1" value="c"> At least eight hours</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="note" style="border-left-color:#8a6a3a;"><strong style="color:#8a6a3a;">Reading list</strong>A World History of Photography by Naomi Rosenblum &mdash; the single best one-volume history, covers origins through contemporary work worldwide.</div>
+    <div class="track-row"><input type="checkbox" data-key="ch1" id="cb1"><label for="cb1">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch2">
+    <div class="chapter-head"><span class="frame-num">02</span><h2>The Moment Machine</h2></div>
+    <p class="kicker">a bet about a horse, and how it started shutter speed and cinema both</p>
+    <div class="story">
+      <p>In 1872, a rich man named Leland Stanford made a bet. He said that when a horse runs fast, there is a moment where all four legs leave the ground at once. Nobody's eye was fast enough to check. So he hired a photographer named <a href="https://en.wikipedia.org/wiki/Eadweard_Muybridge" target="_blank">Eadweard Muybridge</a> to prove it.</p>
+      <p>Muybridge lined up a row of cameras along a track. Each one had a trip-wire and a very fast shutter. As the horse ran past, it tripped each wire, and each camera fired for a split second. When he lined the photos up, there it was — one frame with all four legs off the ground. He won the bet. But something bigger happened too. When you flip through those photos fast, one after another, it looks like the horse is moving. That is the birth of motion pictures.</p>
+      <p>So shutter speed and cinema share the same birthday. Every time you choose a shutter speed, you're doing a tiny version of what Muybridge did — deciding how much of a moving second you want to freeze.</p>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 320 90" width="100%">
+        <g stroke="#7a6a52" fill="none">
+          <rect x="10" y="10" width="45" height="60"/><rect x="60" y="10" width="45" height="60"/>
+          <rect x="110" y="10" width="45" height="60"/><rect x="160" y="10" width="45" height="60"/>
+          <rect x="210" y="10" width="45" height="60"/><rect x="260" y="10" width="45" height="60"/>
+        </g>
+        <path d="M20 55 Q32 40 48 55" stroke="#8a4a1f" fill="none" stroke-width="1.5"/>
+        <path d="M70 52 Q82 34 98 52" stroke="#8a4a1f" fill="none" stroke-width="1.5"/>
+        <path d="M120 48 Q132 26 148 48" stroke="#8a4a1f" fill="none" stroke-width="1.5"/>
+        <path d="M170 45 Q182 20 198 45" stroke="#8a4a1f" fill="none" stroke-width="1.5"/>
+        <text x="160" y="85" fill="#5c4a34" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">frame by frame — the same idea as a fast shutter</text>
+      </svg>
+      <figcaption>Muybridge's idea: many quick frames, played in order, become motion</figcaption>
+    </figure>
+
+    <h3 class="subhead">Shutter speed, in plain terms</h3>
+    <table class="settings">
+      <tr><th>Speed</th><th>What it does</th><th>Use for</th></tr>
+      <tr><td>1/1000s or faster</td><td>Freezes fast motion completely</td><td>Sports, birds, anything quick</td></tr>
+      <tr><td>1/125 – 1/500s</td><td>Freezes normal movement</td><td>Everyday shots, people walking</td></tr>
+      <tr><td>1/30 – 1/60s</td><td>Small blur, needs steady hands</td><td>Low light, gentle movement</td></tr>
+      <tr><td>1 second or slower</td><td>Strong blur, light trails</td><td>Night shots, flowing water</td></tr>
+    </table>
+
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Film or photograph something moving — a fan, water from a tap, someone walking. Try it at a fast setting (freeze it) and a slow setting (blur it), if your camera or phone lets you control this. If not, just compare a still photo of something moving fast versus something moving slow.</p>
+      <a href="https://www.youtube.com/results?search_query=shutter+speed+freeze+vs+motion+blur+comparison+examples" target="_blank">See freeze vs. blur examples →</a>
+    </div>
+
+    <h3 class="subhead">Read and watch</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/Eadweard_Muybridge" target="_blank"><span class="rt">Eadweard Muybridge, the full story</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=eadweard+muybridge+horse+in+motion+birth+of+cinema" target="_blank"><span class="rt">The horse experiment and the birth of cinema</span><span class="rtype watch">Watch</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch2">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">Muybridge's horse experiment proved:</p>
+<label><input type="radio" name="ch2-q0" value="a"> Horses can't run fast</label>
+<label><input type="radio" name="ch2-q0" value="b"> All four legs leave the ground at once while galloping</label>
+<label><input type="radio" name="ch2-q0" value="c"> Cameras can't capture motion</label>
+</div>
+<div class="q" data-answer="a">
+<p class="qtext">For video at 24fps, the 180-degree shutter rule suggests a shutter speed near:</p>
+<label><input type="radio" name="ch2-q1" value="a"> 1/50s</label>
+<label><input type="radio" name="ch2-q1" value="b"> 1/4000s</label>
+<label><input type="radio" name="ch2-q1" value="c"> 1 second</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch2" id="cb2"><label for="cb2">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch3">
+    <div class="chapter-head"><span class="frame-num">03</span><h2>Painting with Light</h2></div>
+    <p class="kicker">Rembrandt's triangle, three-point lighting, and reading the sky</p>
+    <div class="story">
+      <p>Before cameras existed, painters had already worked out light. Look closely at a <a href="https://en.wikipedia.org/wiki/Rembrandt_lighting" target="_blank">Rembrandt</a> portrait and you'll see a small triangle of light on the shadowed cheek, just under the eye. That wasn't luck. It's a lighting pattern photographers still use and name after him today, because one light, placed high and to the side, is enough to give a face shape and mood.</p>
+      <p>Filmmakers turned this into what's called three-point lighting — a key light (your main light), a fill light (softer, from the other side, to open up the shadows a little), and a back light (which separates your subject from the background). You don't need any studio gear to try this. A lamp, a window, and a white bedsheet as a bounce is enough to feel how it works.</p>
+      <p>But most of the light you'll use, especially shooting in a Rajasthan village, is light you don't control — the sun and the sky. Overcast days act like a giant soft light, flat and forgiving. Harsh midday sun is the opposite — hard shadows under eyes and hats. Golden hour, the hour after sunrise and before sunset, gives warm, low, gentle light that flatters almost anything. Learning to read the sky is half the job.</p>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 300 150" width="100%">
+        <circle cx="150" cy="90" r="20" fill="none" stroke="#241708" stroke-width="1.5"/>
+        <text x="150" y="130" fill="#5c4a34" font-size="9" font-family="IBM Plex Mono" text-anchor="middle">subject</text>
+        <circle cx="70" cy="40" r="8" fill="#8a4a1f"/>
+        <line x1="76" y1="46" x2="140" y2="82" stroke="#8a4a1f" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="55" y="30" fill="#8a4a1f" font-size="9" font-family="IBM Plex Mono">key</text>
+        <circle cx="230" cy="60" r="6" fill="#7a6a52"/>
+        <line x1="224" y1="64" x2="162" y2="86" stroke="#7a6a52" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="235" y="55" fill="#7a6a52" font-size="9" font-family="IBM Plex Mono">fill</text>
+        <circle cx="150" cy="20" r="6" fill="#241708"/>
+        <line x1="150" y1="26" x2="150" y2="72" stroke="#241708" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="160" y="20" fill="#241708" font-size="9" font-family="IBM Plex Mono">back</text>
+      </svg>
+      <figcaption>Three-point lighting, seen from above — key, fill, back</figcaption>
+    </figure>
+
+    <h3 class="subhead">Words worth knowing</h3>
+    <ul class="learnlist">
+      <li><strong>Hard light</strong> — direct sun, bare bulb — sharp, dark shadow edges</li>
+      <li><strong>Soft light</strong> — overcast sky, bounced light — gentle, see-through shadow edges</li>
+      <li><strong>Key, fill, back light</strong> — the three-light setup filmmakers build on</li>
+      <li><strong>Motivated light</strong> — a movie light made to look like it's coming from a lamp or window already in the shot</li>
+      <li><strong>Practical</strong> — a real light source you can actually see in the frame</li>
+    </ul>
+
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Photograph the same person or object three times in one day — once in harsh midday light, once in shade or overcast light, once during golden hour near sunset. Don't change anything else. Just watch how the same face looks different depending only on the light.</p>
+      <a href="https://www.youtube.com/results?search_query=same+subject+different+light+midday+golden+hour+comparison" target="_blank">See a similar light comparison →</a>
+    </div>
+
+    <h3 class="subhead">Read and watch</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/Three-point_lighting" target="_blank"><span class="rt">Three-point lighting, full explanation</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=natural+light+documentary+filmmaking+golden+hour+overcast" target="_blank"><span class="rt">Using natural light for documentary shooting</span><span class="rtype watch">Watch</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch3">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">Rembrandt lighting is named for:</p>
+<label><input type="radio" name="ch3-q0" value="a"> A lighting brand</label>
+<label><input type="radio" name="ch3-q0" value="b"> A painter's signature triangle of light on the cheek</label>
+<label><input type="radio" name="ch3-q0" value="c"> A camera setting</label>
+</div>
+<div class="q" data-answer="c">
+<p class="qtext">In three-point lighting, the light that separates subject from background is called:</p>
+<label><input type="radio" name="ch3-q1" value="a"> Key light</label>
+<label><input type="radio" name="ch3-q1" value="b"> Fill light</label>
+<label><input type="radio" name="ch3-q1" value="c"> Back light</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch3" id="cb3"><label for="cb3">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch4">
+    <div class="chapter-head"><span class="frame-num">04</span><h2>Framing the World</h2></div>
+    <p class="kicker">where you put the edges of the frame, and why it matters</p>
+    <div class="story">
+      <p>A photo or a shot is never just "what's in front of the lens." It's a choice about what to keep in, what to leave out, and where you want the eye to land first. This chapter is all about that choice.</p>
+    </div>
+
+    <figure class="diagram">
+      <svg viewBox="0 0 260 170" width="100%">
+        <rect x="10" y="10" width="240" height="150" fill="none" stroke="#7a6a52"/>
+        <line x1="90" y1="10" x2="90" y2="160" stroke="#8a4a1f" stroke-width="0.7" opacity="0.6"/>
+        <line x1="170" y1="10" x2="170" y2="160" stroke="#8a4a1f" stroke-width="0.7" opacity="0.6"/>
+        <line x1="10" y1="60" x2="250" y2="60" stroke="#8a4a1f" stroke-width="0.7" opacity="0.6"/>
+        <line x1="10" y1="110" x2="250" y2="110" stroke="#8a4a1f" stroke-width="0.7" opacity="0.6"/>
+        <circle cx="90" cy="60" r="5" fill="#8a4a1f"/>
+        <circle cx="170" cy="110" r="5" fill="#8a4a1f"/>
+      </svg>
+      <figcaption>Rule of thirds — put the important thing on a line, not in the dead center</figcaption>
+    </figure>
+
+    <h3 class="subhead">Composition</h3>
+    <ul class="learnlist">
+      <li><a href="https://en.wikipedia.org/wiki/Rule_of_thirds" target="_blank">Rule of thirds</a> — place your subject on a grid line, not the center</li>
+      <li>Leading lines — a road, a fence, a person's gaze that pulls the eye toward your subject</li>
+      <li>Framing within a frame — a doorway or window used to frame your subject</li>
+      <li>Negative space — empty space used on purpose, not by accident</li>
+      <li>Depth — foreground, middle, and background all doing something, not just one flat plane</li>
+    </ul>
+
+    <h3 class="subhead">Shot sizes</h3>
+    <p style="color:#2b1d10; font-size:15px;">Extreme wide → wide → medium → close-up → extreme close-up. Each size answers a different question for the viewer — where are we, who is this person, what are they feeling, what are they looking at.</p>
+
+    <h3 class="subhead">Camera angles</h3>
+    <p style="color:#2b1d10; font-size:15px;">Eye-level feels honest and neutral. A high angle looking down makes someone look small. A low angle looking up makes someone look powerful. A tilted, uneven angle makes the viewer feel unsettled.</p>
+
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Pick one subject — your grandfather, a cup of tea, anything. Shoot it six different ways: an extreme wide shot, a wide shot, a medium shot, a close-up, from a low angle, and from a high angle. Look at how differently each one makes you feel about the same subject.</p>
+      <a href="https://www.youtube.com/results?search_query=camera+shot+types+and+angles+film+school+guide" target="_blank">See shot types explained →</a>
+    </div>
+
+    <h3 class="subhead">Read and watch</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/180-degree_rule" target="_blank"><span class="rt">The 180-degree rule, for when you shoot two people talking</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=180+degree+rule+film+editing+explained" target="_blank"><span class="rt">The 180-degree rule, explained with examples</span><span class="rtype watch">Watch</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch4">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">The rule of thirds suggests placing your subject:</p>
+<label><input type="radio" name="ch4-q0" value="a"> Dead center</label>
+<label><input type="radio" name="ch4-q0" value="b"> On a grid line, off-center</label>
+<label><input type="radio" name="ch4-q0" value="c"> Always at the edge</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">The 180-degree rule exists to:</p>
+<label><input type="radio" name="ch4-q1" value="a"> Make lighting brighter</label>
+<label><input type="radio" name="ch4-q1" value="b"> Keep the audience from feeling spatially lost</label>
+<label><input type="radio" name="ch4-q1" value="c"> Speed up editing</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch4" id="cb4"><label for="cb4">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch5">
+    <div class="chapter-head"><span class="frame-num">05</span><h2>The Witnesses</h2></div>
+    <p class="kicker">Cartier-Bresson, Robert Capa, and the start of Magnum</p>
+    <div class="story">
+      <p><a href="https://en.wikipedia.org/wiki/Henri_Cartier-Bresson" target="_blank">Henri Cartier-Bresson</a> believed in what he called "the decisive moment" — the instant when everything in a scene, the shapes, the movement, the feeling, lines up for a split second, and then it's gone. This wasn't only about good timing. It was a belief that a photo's whole meaning could live in one instant, and the photographer's job was to stay quiet and ready enough to catch it without disturbing it. Look closely at his photos and notice how carefully built the composition is, even though it looks completely spontaneous.</p>
+      <p><a href="https://en.wikipedia.org/wiki/Robert_Capa" target="_blank">Robert Capa</a> is almost the opposite in feel, even though he and Cartier-Bresson were close friends. His most famous line is, "If your pictures aren't good enough, you're not close enough." That wasn't about lens choice. It was about how close you're willing to get, physically and emotionally, to danger and to truth. He photographed the Spanish Civil War and landed on the beaches on D-Day with a camera, not a gun. His work raises a real question for you, given your journalism background — what do you owe a person when your job is to stand close to their worst moment?</p>
+      <p>In 1947, Capa, Cartier-Bresson, and two others started <a href="https://en.wikipedia.org/wiki/Magnum_Photos" target="_blank">Magnum Photos</a> — a group owned by the photographers themselves, so they kept the rights to their own work instead of handing it over to whatever magazine printed it. Four photographers, four different relationships to danger, one shared belief that owning your own work matters.</p>
+    </div>
+    <div class="note"><strong>How to read a photo like this</strong>Don't just look and move on. Ask what the photographer chose — where they stood, when they pressed the shutter, what they left out of the frame. That's what "reading" a photo means in a classroom, and it's what you should do with everything from here on.</div>
+
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Go somewhere with people around — a market, a street, your own courtyard. Don't set anything up. Just watch for ten minutes, and take one photo only when something feels like a "decisive moment" to you. One photo. That restraint is the whole exercise.</p>
+    </div>
+
+    <h3 class="subhead">Read, watch, and films to see</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/Henri_Cartier-Bresson" target="_blank"><span class="rt">Henri Cartier-Bresson, full life and work</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Robert_Capa" target="_blank"><span class="rt">Robert Capa, full life and work</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Magnum_Photos" target="_blank"><span class="rt">How Magnum Photos started</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=Henri+Cartier-Bresson+decisive+moment+documentary" target="_blank"><span class="rt">Cartier-Bresson talking about "the decisive moment"</span><span class="rtype watch">Watch</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=War+Photographer+James+Nachtwey+documentary" target="_blank"><span class="rt">"War Photographer" — documentary on James Nachtwey</span><span class="rtype film">Film</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch5">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">Cartier-Bresson's 'decisive moment' is about:</p>
+<label><input type="radio" name="ch5-q0" value="a"> Using fast shutter speeds only</label>
+<label><input type="radio" name="ch5-q0" value="b"> Catching the instant a scene's geometry and feeling align</label>
+<label><input type="radio" name="ch5-q0" value="c"> Deciding which camera brand to buy</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">Magnum Photos was founded so photographers could:</p>
+<label><input type="radio" name="ch5-q1" value="a"> Get free film</label>
+<label><input type="radio" name="ch5-q1" value="b"> Keep the rights to their own work</label>
+<label><input type="radio" name="ch5-q1" value="c"> Avoid taking risks</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="note" style="border-left-color:#8a6a3a;"><strong style="color:#8a6a3a;">Reading list</strong>The Decisive Moment by Henri Cartier-Bresson himself, his own 1952 book laying out his philosophy in his own words. Slightly Out of Focus by Robert Capa is his own memoir of photographing the war, written by Capa, not about him.</div>
+    <div class="track-row"><input type="checkbox" data-key="ch5" id="cb5"><label for="cb5">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch6">
+    <div class="chapter-head"><span class="frame-num">06</span><h2>Movements & Rebels</h2></div>
+    <p class="kicker">photography and film were always talking to each other</p>
+    <div class="story">
+      <p>Photography and cinema movements didn't grow apart from each other. They were shaped by the same decades, the same wars, often the same artists working in both. Read this table across, not just down.</p>
+    </div>
+    <table class="settings">
+      <tr><th>Time</th><th>Photography</th><th>Film</th></tr>
+      <tr><td>1890s–1910s</td><td>Pictorialism — soft, painting-like photos</td><td>Silent era — storytelling with no dialogue</td></tr>
+      <tr><td>1920s</td><td>Modernism — sharp, direct photos</td><td>German Expressionism &amp; Soviet Montage — twisted shadows, meaning built by editing</td></tr>
+      <tr><td>1930s–40s</td><td>Documentary photography — the Depression, the war</td><td>Italian Neorealism — real streets, real people instead of actors</td></tr>
+      <tr><td>1950s–60s</td><td>Street photography — fast, unposed city life</td><td>French New Wave — jump cuts, handheld cameras, breaking rules on purpose</td></tr>
+      <tr><td>1980s–now</td><td>Contemporary photography</td><td>New Hollywood, and a truly global cinema</td></tr>
+    </table>
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Watch one film from this table's list below, start to finish, and write three lines about what the camera is doing differently from a normal film you'd watch today.</p>
+    </div>
+    <h3 class="subhead">Films worth watching</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/The_Cabinet_of_Dr._Caligari" target="_blank"><span class="rt">The Cabinet of Dr. Caligari (1920) — German Expressionism</span><span class="rtype film">Film</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Bicycle_Thieves" target="_blank"><span class="rt">Bicycle Thieves (1948) — Italian Neorealism</span><span class="rtype film">Film</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Breathless_(1960_film)" target="_blank"><span class="rt">Breathless (1960) — French New Wave</span><span class="rtype film">Film</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch6">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">Italian Neorealism is known for:</p>
+<label><input type="radio" name="ch6-q0" value="a"> Big studio sets and famous actors</label>
+<label><input type="radio" name="ch6-q0" value="b"> Real locations and non-actors</label>
+<label><input type="radio" name="ch6-q0" value="c"> Science fiction stories</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">The French New Wave is associated with:</p>
+<label><input type="radio" name="ch6-q1" value="a"> Rigid traditional filmmaking rules</label>
+<label><input type="radio" name="ch6-q1" value="b"> Jump cuts and handheld cameras</label>
+<label><input type="radio" name="ch6-q1" value="c"> Black and white silent films only</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch6" id="cb6"><label for="cb6">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch7">
+    <div class="chapter-head"><span class="frame-num">07</span><h2>India's Own Story</h2></div>
+    <p class="kicker">Parallel Cinema, Raghubir Singh, Raghu Rai — not the big Bollywood canon</p>
+    <div class="story">
+      <p>India's most respected film movement did not come from Bombay's commercial industry. It came from Bengal. In 1955, <a href="https://en.wikipedia.org/wiki/Satyajit_Ray" target="_blank">Satyajit Ray</a> released <em>Pather Panchali</em>, shot with non-actors in real villages, inspired by Italian Neorealism. It won awards at Cannes, Venice, and Berlin, and it started what's called <a href="https://en.wikipedia.org/wiki/Parallel_cinema" target="_blank">Parallel Cinema</a> — a serious alternative to mainstream commercial films, built on real life instead of spectacle. Ritwik Ghatak was working right alongside him.</p>
+      <p>This movement didn't stay only in Bengal. It spread into many regional industries, each with its own voice: Adoor Gopalakrishnan in Malayalam cinema, Girish Kasaravalli in Kannada, Shyam Benegal and Govind Nihalani bringing this same honesty into Hindi cinema on small budgets, Buddhadeb Dasgupta carrying it forward in later years. This is the list worth knowing if you want to work outside the big commercial industry. For Gujarati and Punjabi cinema, there isn't one single famous "movement" the way Bengal has — that's worth treating as your own ongoing search, watching for new award-winning independent films from those industries as they come out.</p>
+      <p>On the photography side, two names matter a lot for what you're doing. <a href="https://en.wikipedia.org/wiki/Raghubir_Singh_(photographer)" target="_blank">Raghubir Singh</a> was born in Jaipur — your own part of the country — and taught himself photography. His documentary photos of India were shaped by Rajasthani miniature painting and Mughal art. Since <em>The Policy</em> is set in a Rajasthani village, his way of seeing is probably the closest match to your own project.</p>
+      <p><a href="https://en.wikipedia.org/wiki/Raghu_Rai" target="_blank">Raghu Rai</a> is the other name to know — Cartier-Bresson himself brought Rai into Magnum Photos in 1977. Rai photographed the Bangladesh refugee crisis in 1972 and the Bhopal gas tragedy in 1984, two of the most important photo stories from India's modern history. There's also a documentary about him, made by his own daughter, worth watching.</p>
+    </div>
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Find three photos by Raghubir Singh online. Look at how he uses color and everyday street life. Then go take one photo near you that tries to borrow just one thing from his style — color, a busy street, a person mid-motion.</p>
+    </div>
+    <h3 class="subhead">Read, watch, and films to see</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/Parallel_cinema" target="_blank"><span class="rt">Parallel Cinema, full movement history</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.bfi.org.uk/lists/indian-parallel-cinema-essential-directors" target="_blank"><span class="rt">BFI: 5 essential Parallel Cinema filmmakers</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Raghubir_Singh_(photographer)" target="_blank"><span class="rt">Raghubir Singh, the Jaipur-born photographer</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Raghu_Rai" target="_blank"><span class="rt">Raghu Rai, Magnum, Bangladesh, Bhopal</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=Raghu+Rai+An+Unframed+Portrait+documentary" target="_blank"><span class="rt">"An Unframed Portrait" — documentary on Raghu Rai</span><span class="rtype film">Film</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Pather_Panchali" target="_blank"><span class="rt">Pather Panchali (1955) — where it all started</span><span class="rtype film">Film</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch7">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="a">
+<p class="qtext">Parallel Cinema in India began mainly in:</p>
+<label><input type="radio" name="ch7-q0" value="a"> Bengal</label>
+<label><input type="radio" name="ch7-q0" value="b"> Punjab</label>
+<label><input type="radio" name="ch7-q0" value="c"> Gujarat</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">Raghubir Singh's photography was especially shaped by:</p>
+<label><input type="radio" name="ch7-q1" value="a"> Hollywood film posters</label>
+<label><input type="radio" name="ch7-q1" value="b"> Rajasthani miniature and Mughal painting</label>
+<label><input type="radio" name="ch7-q1" value="c"> European fashion magazines</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="note" style="border-left-color:#8a6a3a;"><strong style="color:#8a6a3a;">Reading list</strong>River of Colour by Raghubir Singh &mdash; his own essays alongside his photographs, explains his thinking directly. Exposure by Raghu Rai is a strong retrospective of his own work with his own captions and context.</div>
+    <div class="track-row"><input type="checkbox" data-key="ch7" id="cb7"><label for="cb7">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch8">
+    <div class="chapter-head"><span class="frame-num">08</span><h2>Documentary, Deep Dive</h2></div>
+    <p class="kicker">the six ways a documentary can tell the truth</p>
+    <div class="story">
+      <p>This chapter speaks straight to you as a documentary filmmaker. A film scholar named Bill Nichols noticed that documentaries tend to fall into six approaches, called "modes." Most real films mix two or three, but knowing them gives you words for choices you're already making without realizing it.</p>
+    </div>
+    <ul class="learnlist">
+      <li><strong>Observational</strong> — the camera just watches. No narration, no interviews, barely any editing. Also called "Direct Cinema."</li>
+      <li><strong>Expository</strong> — voice-over driven, makes a clear argument. Most news and nature documentaries work this way.</li>
+      <li><strong>Participatory</strong> — the filmmaker is on camera too, asking questions, and their presence visibly changes what happens.</li>
+      <li><strong>Reflexive</strong> — the film shows you it's a film, questioning what's real and what's built.</li>
+      <li><strong>Poetic</strong> — no clear argument or story, built from images and feeling instead.</li>
+      <li><strong>Performative</strong> — very personal, the filmmaker's own life becomes part of the story being told.</li>
+    </ul>
+    <div class="note"><strong>How this connects to your work</strong><em>The Policy</em> is a scripted, dramatized short. But if you ever film the real story behind it as a documentary, this matters. Staying invisible while your grandfather deals with the paperwork would be observational. Being on camera yourself, asking questions, visibly helping — closer to participatory, since that's closer to what actually happened. Neither one is more honest than the other. They're just different claims about your own place in the story.</div>
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Shoot two minutes of anything — your grandfather making tea, a street scene — twice. Once, stay completely silent and out of frame, just observing. Second time, talk to the person, ask them a question on camera, let yourself be part of it. Compare how different the footage feels.</p>
+    </div>
+    <h3 class="subhead">Read, watch, and films to see</h3>
+    <div class="resource-grid">
+      <a class="resource" href="https://en.wikipedia.org/wiki/Documentary_mode" target="_blank"><span class="rt">Documentary mode, the full framework</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://nofilmschool.com/6-modes-of-documentary" target="_blank"><span class="rt">The six modes, with example clips</span><span class="rtype">Read</span></a>
+      <a class="resource" href="https://www.youtube.com/results?search_query=types+of+documentary+filmmaking+explained+observational+participatory" target="_blank"><span class="rt">Types of documentary filmmaking, explained</span><span class="rtype watch">Watch</span></a>
+      <a class="resource" href="https://en.wikipedia.org/wiki/Man_with_a_Movie_Camera" target="_blank"><span class="rt">Man with a Movie Camera (1929) — reflexive mode, the founding example</span><span class="rtype film">Film</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch8">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">A documentary where the camera just watches, with no narration, is called:</p>
+<label><input type="radio" name="ch8-q0" value="a"> Expository</label>
+<label><input type="radio" name="ch8-q0" value="b"> Observational</label>
+<label><input type="radio" name="ch8-q0" value="c"> Poetic</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">A documentary where the filmmaker appears and asks questions is called:</p>
+<label><input type="radio" name="ch8-q1" value="a"> Reflexive</label>
+<label><input type="radio" name="ch8-q1" value="b"> Participatory</label>
+<label><input type="radio" name="ch8-q1" value="c"> Performative</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="note" style="border-left-color:#8a6a3a;"><strong style="color:#8a6a3a;">Reading list</strong>Introduction to Documentary by Bill Nichols &mdash; the actual textbook this chapter's framework comes from, used in film school documentary courses worldwide.</div>
+    <div class="track-row"><input type="checkbox" data-key="ch8" id="cb8"><label for="cb8">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch9">
+    <div class="chapter-head"><span class="frame-num">09</span><h2>Camera Settings, All of Them</h2></div>
+    <p class="kicker">now that you know the ideas, here's your Sony a7S — every setting, in one place</p>
+    <div class="story">
+      <p>Everything before this chapter was about ideas that work on any camera, even a phone. This chapter is just for your Sony a7S. Keep it as a sheet you come back to on set, not something to memorize in one sitting.</p>
+    </div>
+    <div class="note"><strong>Check this first</strong>Your kit lens is made for a smaller, APS-C sensor, but your a7S body is full-frame. Go into your menu and check the Zoom / APS-C Image Area setting. If it's wrong, your photos may be cropped or vignetted without you realizing why.</div>
+    <table class="settings">
+      <tr><th>Condition</th><th>Aperture</th><th>Shutter</th><th>ISO</th><th>White balance</th></tr>
+      <tr><td>Bright midday sun</td><td>f/8–f/16</td><td>1/500–1/1000</td><td>100–200</td><td>Daylight</td></tr>
+      <tr><td>Overcast / shade</td><td>f/4–f/5.6</td><td>1/125–1/250</td><td>200–400</td><td>Cloudy</td></tr>
+      <tr><td>Golden hour</td><td>f/2.8–f/5.6</td><td>1/125–1/250</td><td>100–400</td><td>Daylight, warm it slightly</td></tr>
+      <tr><td>Blue hour / dusk</td><td>f/2.8–f/4</td><td>1/60–1/125</td><td>800–1600</td><td>Cooler, ~7000K</td></tr>
+      <tr><td>Indoor / tungsten light</td><td>f/2.8–f/4</td><td>1/60–1/125</td><td>800–3200</td><td>Tungsten</td></tr>
+      <tr><td>Night (a7S is built for this)</td><td>f/1.8–f/2.8</td><td>1/30–1/60, slower on tripod</td><td>3200–12800+</td><td>Custom / manual</td></tr>
+      <tr><td>Video, any condition</td><td>Match the depth of field you want</td><td>About double your frame rate</td><td>Lowest usable, for a clean image</td><td>Locked manually, not on Auto</td></tr>
+    </table>
+    <h3 class="subhead">Other settings to know</h3>
+    <ul class="learnlist">
+      <li><strong>Metering</strong> — how the camera reads light. Matrix/multi for general use, spot for tricky, high-contrast light.</li>
+      <li><strong>Focus modes</strong> — single-shot for still subjects, continuous for moving ones, manual with focus peaking for precise control.</li>
+      <li><strong>File format</strong> — shoot RAW when you can. It keeps more detail to fix later.</li>
+      <li><strong>Frame rate for video</strong> — 24fps for a filmic look, 25fps if you're matching Indian broadcast standards, 60fps or higher only if you plan to slow the footage down.</li>
+    </ul>
+    <div class="task">
+      <span class="tag">Your assignment</span>
+      <p>Go through this whole table once, setting by setting, on your actual camera. Don't shoot anything yet — just find every menu item on this page so your hands know where it lives before you need it on set.</p>
+    </div>
+    <div class="resource-grid">
+      <a class="resource" href="https://www.youtube.com/results?search_query=Sony+a7S+complete+settings+guide+tutorial" target="_blank"><span class="rt">Full Sony a7S settings walkthrough</span><span class="rtype watch">Watch</span></a>
+    </div>
+    <div class="quiz" data-quiz="ch9">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">For bright midday sun, a good starting aperture is around:</p>
+<label><input type="radio" name="ch9-q0" value="a"> f/1.8</label>
+<label><input type="radio" name="ch9-q0" value="b"> f/8-f/16</label>
+<label><input type="radio" name="ch9-q0" value="c"> f/22 only at night</label>
+</div>
+<div class="q" data-answer="a">
+<p class="qtext">For clean low-light video on the a7S, you'd typically:</p>
+<label><input type="radio" name="ch9-q1" value="a"> Raise ISO high since the sensor handles it well</label>
+<label><input type="radio" name="ch9-q1" value="b"> Always use ISO 100 regardless of light</label>
+<label><input type="radio" name="ch9-q1" value="c"> Turn off ISO entirely</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch9" id="cb9"><label for="cb9">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="ch10">
+    <div class="chapter-head"><span class="frame-num">10</span><h2>Making Your Own Work</h2></div>
+    <p class="kicker">putting it all together, and maybe teaching it one day</p>
+    <div class="story">
+      <p>Everything so far has been study. This last chapter is about turning it back into practice, on <em>The Policy</em>. As you plan your shoot, go back to Chapters 3, 4, and 8 on purpose: your lighting plan for a Rajasthan village, a shot list built from real shot choices instead of guesswork, and a clear decision about how invisible or how present your camera should feel in each scene.</p>
+      <p>Build this habit: after every shoot day, look back at your footage and ask which chapter it belongs to. Did you use hard sun the way Chapter 3 talked about? Did you keep the 180-degree rule from Chapter 4 while filming a conversation? That's how the study feeds back into the real work instead of sitting separately from it.</p>
+      <p>And when you're ready to start teaching this to others — start with whichever chapter you understood best on your first read. That's usually the one you're most ready to explain.</p>
+    </div>
+    <div class="quiz" data-quiz="ch10">
+<h3 class="subhead">Quick check</h3>
+<div class="q" data-answer="b">
+<p class="qtext">After each shoot day, a good habit is to:</p>
+<label><input type="radio" name="ch10-q0" value="a"> Delete the footage immediately</label>
+<label><input type="radio" name="ch10-q0" value="b"> Ask which chapter your footage connects to</label>
+<label><input type="radio" name="ch10-q0" value="c"> Never review footage</label>
+</div>
+<div class="q" data-answer="b">
+<p class="qtext">The chapter suggests starting to teach with:</p>
+<label><input type="radio" name="ch10-q1" value="a"> The hardest chapter you struggled with</label>
+<label><input type="radio" name="ch10-q1" value="b"> The chapter you understood best first</label>
+<label><input type="radio" name="ch10-q1" value="c"> A random chapter</label>
+</div>
+<button class="quizCheck">Check my answers</button>
+<div class="quizResult"></div>
+</div>
+<div class="track-row"><input type="checkbox" data-key="ch10" id="cb10"><label for="cb10">Mark this chapter done</label></div>
+  </section>
+
+
+</div>
+<div id="page-upsc" class="page-section" data-course="upsc">
+
+  <div class="eyebrow">Course 02</div>
+  <h1>History, Geography, Polity & Current Affairs</h1>
+  <p class="intro">This track covers colonialism and the people who fought it, world and Indian history, the physical and political map of the world, how India governs itself, political theory, and the exam that could come out of all of it — UPSC. Chapters below are listed in the order we'll build them. Tell me which one to start with.</p>
+
+  
+  <div class="chapter-card" data-category="overview" style="background:var(--surface-2);">
+    <span class="num">FULL SYLLABUS</span>
+    <h3>Every Subject, Stage by Stage</h3>
+    <p style="margin-bottom:16px;">This is the complete official structure — what's tested, how many marks, how much time, and what question type. Read this once properly and tape it to your wall, the way toppers say to.</p>
+
+    <p style="margin:16px 0 6px;"><strong>PRELIMS — Paper I: General Studies</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">100 questions &middot; 200 marks &middot; 2 hours &middot; objective (MCQ) &middot; wrong answer costs 1/3 mark</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">Current events of national and international importance &middot; History of India and the Indian National Movement &middot; Indian and world geography (physical, social, economic) &middot; Indian polity and governance (Constitution, political system, panchayati raj, public policy, rights issues) &middot; Economic and social development (sustainable development, poverty, inclusion, demographics, social sector schemes) &middot; Environment, ecology, biodiversity, and climate change &middot; General science.</p>
+
+    <p style="margin:16px 0 6px;"><strong>PRELIMS — Paper II: CSAT</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">200 marks &middot; 2 hours &middot; objective (MCQ) &middot; qualifying only, need 33% &middot; doesn't count toward rank</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">Comprehension &middot; interpersonal and communication skills &middot; logical reasoning and analytical ability &middot; decision-making and problem-solving &middot; general mental ability &middot; basic numeracy and data interpretation, both at roughly Class 10 level. This is the paper your journalism background should make easier than most.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — Essay</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">250 marks &middot; 3 hours &middot; descriptive, handwritten</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">You write two essays, chosen from different sections offering a range of topics. It tests how clearly you can organize an argument, not just what you know — genuinely close to what a journalism background already trains.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — GS Paper I</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">250 marks &middot; 3 hours</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">Indian heritage and culture (art forms, literature, architecture) &middot; modern Indian history from the mid-1700s onward &middot; the Freedom Struggle &middot; post-independence consolidation and reorganisation &middot; world history &middot; Indian society &middot; geography of India and the world.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — GS Paper II</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">250 marks &middot; 3 hours</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">The Constitution, its evolution and structure &middot; the Union and the States, federalism &middot; separation of powers &middot; Parliament and state legislatures &middot; the judiciary and dispute redressal &middot; governance, transparency, and accountability &middot; social justice &middot; international relations.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — GS Paper III</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">250 marks &middot; 3 hours</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">The Indian economy, planning, and resource mobilisation &middot; agriculture &middot; industry and infrastructure &middot; science and technology &middot; environment and biodiversity &middot; disaster management &middot; internal security and border management.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — GS Paper IV</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">250 marks &middot; 3 hours</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">Ethics and human interface &middot; attitude &middot; aptitude and foundational values for civil service &middot; emotional intelligence &middot; contributions of moral thinkers and philosophers &middot; public/civil service values and ethics in public administration &middot; probity in governance, often tested through case studies.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — Optional Subject (2 papers)</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">250 marks each, 500 total &middot; 3 hours each</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">You pick one subject from a list of around 48 — everything from Political Science and History to Literature, Sociology, Public Administration, Anthropology, and various sciences and engineering fields. Given your background, Political Science & International Relations, Sociology, History, or Public Administration are the ones most journalism graduates gravitate toward, since they build on skills you likely already have.</p>
+
+    <p style="margin:16px 0 6px;"><strong>MAINS — Language Papers (Qualifying only)</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">300 marks each &middot; 3 hours each &middot; need 25% to qualify, not counted in merit</span></p>
+    <p style="margin:0 0 12px;color:var(--muted);font-size:14.5px;">Paper A: one Indian language from the Eighth Schedule of the Constitution. Paper B: English. Both just test basic proficiency — comprehension, short essay, translation.</p>
+
+    <p style="margin:16px 0 6px;"><strong>INTERVIEW — Personality Test</strong> &nbsp;<span class="mono" style="font-size:11px;color:var(--muted-2);">275 marks &middot; no fixed duration, no fixed syllabus</span></p>
+    <p style="margin:0;color:var(--muted);font-size:14.5px;">There's no syllabus here in the usual sense — questions come from your own application form (your degree, your work history, your state, your hobbies) and current issues. A board of members assesses mental alertness, clarity of thought, balance of judgement, and social awareness, not just factual recall. This is genuinely where your years of asking people questions on camera become a real asset.</p>
+  </div>
+
+  <div class="chapter-card" data-category="overview" style="background:var(--surface-2);">
+    <span class="num">THE EXAM</span>
+    <h3>How the UPSC Civil Services Exam Actually Works</h3>
+    <p style="margin-bottom:14px;">Three stages, and only the last two count toward your final rank.</p>
+    <p style="margin:0 0 10px;"><strong>Stage 1 — Prelims (screening only, marks don't count toward final rank):</strong> Two objective papers on the same day. GS Paper I has 100 questions worth 200 marks, covering history, geography, polity, economy, environment, science, and current affairs. Paper II is CSAT (aptitude and reasoning) — it's only qualifying, you just need 33% to pass. Wrong answers cost you 1/3 mark in negative marking.</p>
+    <p style="margin:0 0 10px;"><strong>Stage 2 — Mains (this is where your rank starts forming):</strong> Nine descriptive papers, written by hand, over several days. Two are qualifying-only language papers. The rest count toward merit: one Essay paper, four General Studies papers (GS I-IV, covering history & culture, governance & polity, economy & environment, and ethics), and two papers in one optional subject you choose. Total: 1,750 marks.</p>
+    <p style="margin:0 0 10px;"><strong>Stage 3 — Interview (Personality Test):</strong> 275 marks. No fixed syllabus — questions come from your own application form (your background, your state, your degree, current issues). This is where your journalism background actually becomes an asset, since you're used to being asked hard questions on the spot.</p>
+    <p style="margin:0;">Final rank = Mains marks (1,750) + Interview marks (275) = 2,025 total. Prelims only decides who gets to sit the Mains.</p>
+  </div>
+
+  <div class="chapter-card" data-category="overview">
+    <span class="num">PAPERS</span>
+    <h3>Previous Years' Question Papers</h3>
+    <p>UPSC publishes every past Prelims and Mains paper for free on its own site — this is the single most reliable source, better than any coaching site copy.</p>
+    <p style="margin-top:8px;"><a href="https://upsc.gov.in/examinations/previous-question-papers" target="_blank">upsc.gov.in — official previous year question papers, all subjects, all years</a></p>
+  </div>
+
+  <section class="chapter-full" id="u1" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">01 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">How the World Got Carved Up</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p>By the start of the 20th century, European powers controlled roughly 84% of the earth's land surface, either as colonies or through direct political control. This didn't happen all at once. It built up over four centuries, starting with Spain and Portugal claiming the Americas in the 1500s, followed by the Dutch, French, and eventually the British building the largest empire in history.</p>
+    <p>India's experience is the one you likely know best: the British East India Company arrived as a trading company in 1600, gradually took political control through a mix of military force and manipulating local rulers, and by 1858, after the 1857 rebellion, the British Crown took direct control, ruling India for another 90 years until independence in 1947. The economic pattern was consistent everywhere colonizers went: extract raw materials cheaply, ship them to the home country, manufacture goods there, and sell finished products back to the colony at a profit — deliberately preventing colonies from developing their own industry.</p>
+    <p>Africa's colonization was even more abrupt. At the Berlin Conference of 1884-85, European powers sat in a room and divided the entire African continent among themselves, without a single African representative present. Borders were drawn with rulers on a map, often cutting straight through existing ethnic and tribal territories — a major root cause of conflicts that persist in parts of Africa today. The Belgian Congo is one of the most brutal examples: King Leopold II of Belgium personally owned the Congo as his private property from 1885 to 1908, forcing the population into rubber production through mutilation and mass killing, with estimates of the death toll ranging from several million to as high as ten million people.</p>
+    <p>This pattern repeated with local variations everywhere — the Dutch in Indonesia, the French across West Africa and Vietnam, the Spanish and Portuguese across Latin America, the British across the Middle East after World War I. Wherever it happened, the same underlying logic applied: treat another people's land and labor as a resource for the colonizer's benefit, and reorganize the colony's economy, borders, and even its education system around that extraction.</p>
+    </div>
+    <div class="tag" style="margin-top:14px;">Read next: Chapter 02, the leaders who fought this system</div>
+    <div class="quiz" data-quiz="u1" style="background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:18px 0 0;">
+      <h4 style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-transform:uppercase;color:var(--muted-2);margin:0 0 12px;">Quick check</h4>
+      <div class="q" data-answer="b" style="margin-bottom:14px;">
+        <p style="font-size:14.5px;font-weight:600;margin:0 0 8px;">By the early 1900s, European powers controlled roughly what share of the world's land?</p>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q1" value="a" style="margin-right:8px;"> About 25%</label>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q1" value="b" style="margin-right:8px;"> About 84%</label>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q1" value="c" style="margin-right:8px;"> About 50%</label>
+      </div>
+      <div class="q" data-answer="c" style="margin-bottom:14px;">
+        <p style="font-size:14.5px;font-weight:600;margin:0 0 8px;">The Berlin Conference of 1884-85 was where:</p>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q2" value="a" style="margin-right:8px;"> African leaders united against colonization</label>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q2" value="b" style="margin-right:8px;"> India gained independence</label>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q2" value="c" style="margin-right:8px;"> European powers divided Africa among themselves, without African representatives</label>
+      </div>
+      <div class="q" data-answer="a" style="margin-bottom:14px;">
+        <p style="font-size:14.5px;font-weight:600;margin:0 0 8px;">The British Crown took direct control of India in:</p>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q3" value="a" style="margin-right:8px;"> 1858, after the 1857 rebellion</label>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q3" value="b" style="margin-right:8px;"> 1600, when the East India Company arrived</label>
+        <label style="display:block;font-size:14px;padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;"><input type="radio" name="u1-q3" value="c" style="margin-right:8px;"> 1947</label>
+      </div>
+      <button class="quizCheck" style="background:var(--accent);color:var(--bg);border:none;padding:8px 14px;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;">Check my answers</button>
+      <div class="quizResult" style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent);"></div>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Books on colonialism, from people who lived it</h3>
+      <p style="font-size:14px;">Discovery of India by Jawaharlal Nehru &mdash; written from Ahmednagar Fort prison, India's own history as told by a man who spent years jailed by the empire he's writing about. King Leopold's Ghost by Adam Hochschild &mdash; not written by a Congolese author, but one of the most thorough accountings of the Congo atrocities using survivor testimony throughout. Wretched of the Earth by Frantz Fanon &mdash; a psychiatrist from Martinique writing directly on colonialism's psychological violence, from inside the Algerian independence struggle. For the other side too, since you said you don't mind reading both: A Passage to India by E.M. Forster shows you exactly how the empire saw itself, which is worth knowing.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u1" id="cbu1"><label for="cbu1">Mark this chapter done</label></div>
+  </section>
+  <div class="chapter-card" data-category="history"><span class="num">02</span><h3>Those Who Fought Back</h3><p>Lumumba in Congo, Bolívar in South America, tribal and indigenous resistance across Africa, the Americas, and Asia, and India's own freedom leaders.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="history"><span class="num">03</span><h3>Two World Wars, One Century</h3><p>How they redrew the map of the entire world, and set up almost every conflict since.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="history"><span class="num">04</span><h3>India After Midnight</h3><p>Partition, the writing of the Constitution, and the republic's first uncertain decades.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="geography"><span class="num">05</span><h3>The Shape of the Earth</h3><p>Physical geography, climate systems, and finally getting the world map to stick in your head for good.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="geography"><span class="num">06</span><h3>Who Runs Where</h3><p>Capitals, current heads of state and government, and how to actually keep track of them.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="polity"><span class="num">07</span><h3>How India Governs Itself</h3><p>The Constitution, Parliament, the judiciary, elections — India's polity, in plain language.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="polity"><span class="num">08</span><h3>Ideas That Shaped Nations</h3><p>Political theory — liberalism, socialism, nationalism, Gandhian thought, and where India's own thinkers fit in.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card" data-category="overview"><span class="num">09</span><h3>Cracking UPSC</h3><p>How the exam actually works — prelims, mains, interview — and where a journalism background gives you a real edge.</p><span class="tag">not yet written</span></div>
+
+  <div class="notebook" data-category="currentaffairs">
+    <h2>Current Affairs Notebook</h2>
+    <p class="sub">This one works right now — I can't write "today's news" into a static page, but I can hold what you read. Jot things down here as you go through the paper. It saves automatically to this device.</p>
+    <div class="cat"><label>Government schemes & policy</label><textarea data-key="ca-schemes"></textarea></div>
+    <div class="cat"><label>International relations & world affairs</label><textarea data-key="ca-intl"></textarea></div>
+    <div class="cat"><label>Environment & science/tech</label><textarea data-key="ca-envsci"></textarea></div>
+    <div class="cat"><label>Economy & finance</label><textarea data-key="ca-econ"></textarea></div>
+    <div class="cat"><label>Awards, reports & indices</label><textarea data-key="ca-awards"></textarea></div>
+    <div class="savebar"><button id="saveBtn">Save notes</button><span class="status" id="saveStatus"></span></div>
+  </div>
+
+</div>
+<div id="page-math" class="page-section" data-course="math">
+
+  <div class="eyebrow">Course 03</div>
+  <h1>Math & Science, from Class 5</h1>
+  <p class="intro">Starting over, properly, from the basics, all the way to Class 12 Indian syllabus. Chapter 1 is fully built below — go through it slowly, it's the foundation everything else stands on. The rest of the staircase (Class 7 through 12) is listed after it and will be built the same way, one step at a time.</p>
+
+  <section class="chapter" id="m1">
+    <div class="chapter-head"><span class="frame-num">01</span><h2>Class 5-6 — Numbers, Fractions, and the Basics That Never Left</h2></div>
+
+    <h4 class="sub">Place value — why "205" isn't just three digits</h4>
+    <div class="story"><p>Every digit in a number has a job depending on where it sits. In 205, the 2 is in the hundreds place (worth 200), the 0 is in the tens place (worth 0), and the 5 is in the ones place (worth 5). This is called place value, and it's the entire reason our number system works with only ten digits (0-9) to write any number at all, no matter how huge.</p></div>
+    <div class="example"><span class="lbl">Worked example</span>What is 3,406 broken into place value? 3 thousands (3,000) + 4 hundreds (400) + 0 tens (0) + 6 ones (6) = 3,406.</div>
+    <p style="margin:8px 0 0;"><a href="https://www.youtube.com/results?search_query=place+value+explained+easy+for+beginners" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;">Easy video: place value explained &rarr;</a></p>
+
+    <h4 class="sub">Fractions — a part of a whole</h4>
+    <div class="story"><p>A fraction like 3/4 means: split something into 4 equal parts, and take 3 of them. The bottom number (denominator) tells you how many equal parts the whole is split into. The top number (numerator) tells you how many of those parts you have. To add or subtract fractions, the denominators must match first — this is called finding a common denominator.</p></div>
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;margin:14px 0;text-align:center;">
+      <svg viewBox="0 0 260 90" width="100%" style="max-width:340px;">
+        <g>
+          <rect x="10" y="10" width="60" height="60" fill="none" stroke="#5c4a34" stroke-width="1.5"/>
+          <line x1="40" y1="10" x2="40" y2="70" stroke="#5c4a34" stroke-width="1"/>
+          <line x1="10" y1="40" x2="70" y2="40" stroke="#5c4a34" stroke-width="1"/>
+          <rect x="10" y="10" width="30" height="30" fill="#8a3a12" opacity="0.75"/>
+          <rect x="40" y="10" width="30" height="30" fill="#8a3a12" opacity="0.75"/>
+          <rect x="10" y="40" width="30" height="30" fill="#8a3a12" opacity="0.75"/>
+          <text x="40" y="86" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#7d6a4e">3/4 shaded</text>
+        </g>
+        <g transform="translate(120,0)">
+          <rect x="10" y="10" width="60" height="60" fill="none" stroke="#5c4a34" stroke-width="1.5"/>
+          <line x1="40" y1="10" x2="40" y2="70" stroke="#5c4a34" stroke-width="1"/>
+          <rect x="10" y="10" width="30" height="60" fill="#8a3a12" opacity="0.75"/>
+          <text x="40" y="86" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#7d6a4e">1/2 shaded</text>
+        </g>
+      </svg>
+    </div>
+    <div class="example"><span class="lbl">Worked example</span>1/4 + 1/2 = ? First make the denominators match: 1/2 is the same as 2/4. So 1/4 + 2/4 = 3/4.</div>
+    <p style="margin:8px 0 0;"><a href="https://www.youtube.com/results?search_query=fractions+for+kids+easy+explanation+visual" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;">Easy video: fractions explained visually &rarr;</a></p>
+
+    <h4 class="sub">Decimals — fractions written a different way</h4>
+    <div class="story"><p>0.5 and 1/2 are the exact same amount, just written differently. Everything after the decimal point is a fraction of 1 — the first digit after the point is tenths, the second is hundredths. So 0.75 means 75 hundredths, which is the same as 3/4.</p></div>
+
+    <h4 class="sub">Basic geometry — shapes and their rules</h4>
+    <div class="story"><p>A triangle's three angles always add up to 180 degrees, no matter its shape. A rectangle's area (the space it covers) is length times width. A square is just a rectangle where all four sides are equal. Perimeter is the distance all the way around a shape's edge; area is the space inside it — people mix these up constantly, so it's worth saying out loud: perimeter is the outline, area is the inside.</p></div>
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;margin:14px 0;text-align:center;">
+      <svg viewBox="0 0 260 100" width="100%" style="max-width:320px;">
+        <polygon points="30,85 90,85 60,20" fill="none" stroke="#8a3a12" stroke-width="1.5"/>
+        <text x="30" y="97" font-family="IBM Plex Mono" font-size="9" fill="#7d6a4e">A</text>
+        <text x="88" y="97" font-family="IBM Plex Mono" font-size="9" fill="#7d6a4e">B</text>
+        <text x="60" y="15" font-family="IBM Plex Mono" font-size="9" fill="#7d6a4e">C</text>
+        <text x="55" y="55" font-family="Source Serif 4" font-size="10" fill="#241a0f">A+B+C=180&deg;</text>
+        <g transform="translate(140,20)">
+          <rect x="0" y="0" width="80" height="50" fill="none" stroke="#8a3a12" stroke-width="1.5"/>
+          <text x="40" y="70" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" fill="#7d6a4e">length x width = area</text>
+        </g>
+      </svg>
+    </div>
+    <p style="margin:8px 0 0;"><a href="https://www.youtube.com/results?search_query=basic+geometry+shapes+angles+for+beginners+easy" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;">Easy video: shapes, angles, and area explained &rarr;</a></p>
+
+    <h4 class="sub">Science — matter and living things</h4>
+    <div class="story"><p>Everything physical around you is made of matter, and matter exists in three basic states: solid (keeps its own shape, like a rock), liquid (takes the shape of its container but keeps its volume, like water), and gas (spreads out to fill whatever space it's in, like air). Living things are classified broadly into plants and animals, and every living thing shares certain basic needs: food or energy, water, air, and a way to reproduce. This sounds obvious, but it's the exact foundation biology builds on for the next seven years of school.</p></div>
+
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag2" style="color:#8a6a3a;">Reading list</span><p>Math Doesn't Suck by Danica McKellar &mdash; written specifically for people who felt left behind by school math, rebuilds confidence alongside the actual concepts. NCERT's own Class 5 and 6 textbooks (free PDFs at ncert.nic.in) are worth having too, since they're the exact source Indian schools teach from.</p></div>
+    <div class="task"><span class="tag2">Your assignment</span><p>Take any five-digit number you see today (a phone number, a price, a house number) and write out its full place value breakdown, the way the worked example above did. Then find one fraction in real life — a recipe, a discount percentage, a football match's time left — and write what it actually means in plain words.</p></div>
+
+    <div class="quiz" data-quiz="m1"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">In the number 4,801 what is the value of the digit 8?</p>
+        <label><input type="radio" name="m1-q1" value="a"> 8</label>
+        <label><input type="radio" name="m1-q1" value="b"> 800</label>
+        <label><input type="radio" name="m1-q1" value="c"> 8,000</label></div>
+      <div class="q" data-answer="a"><p class="qtext">1/2 + 1/4 equals:</p>
+        <label><input type="radio" name="m1-q2" value="a"> 3/4</label>
+        <label><input type="radio" name="m1-q2" value="b"> 2/6</label>
+        <label><input type="radio" name="m1-q2" value="c"> 1/6</label></div>
+      <div class="q" data-answer="b"><p class="qtext">Area of a shape refers to:</p>
+        <label><input type="radio" name="m1-q3" value="a"> The distance around its edge</label>
+        <label><input type="radio" name="m1-q3" value="b"> The space covered inside it</label>
+        <label><input type="radio" name="m1-q3" value="c"> Its weight</label></div>
+      <div class="q" data-answer="c"><p class="qtext">A gas is different from a solid or liquid because it:</p>
+        <label><input type="radio" name="m1-q4" value="a"> Always keeps a fixed shape</label>
+        <label><input type="radio" name="m1-q4" value="b"> Only exists on other planets</label>
+        <label><input type="radio" name="m1-q4" value="c"> Spreads out to fill whatever space it's in</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+  </section>
+
+  <div class="note">Chapters below are listed so you can see the full staircase. I'll build each one the same way, with worked examples and a quiz, once you're ready to move to it.</div>
+
+  <section class="chapter" id="m2">
+    <div class="chapter-head"><span class="frame-num">02</span><h2>Class 7-8 — Algebra Begins, and Why Science Gets Interesting</h2></div>
+
+    <h4 class="sub">Algebra — using a letter for a number you don't know yet</h4>
+    <div class="story"><p>Algebra can feel scary just because of the letters, but it's really just arithmetic with a placeholder. If someone says "I'm thinking of a number, add 5 to it and you get 12," algebra just writes that as x + 5 = 12. The letter x is simply standing in for "the number we don't know yet." Solving the equation means figuring out what x has to be — here, x = 7, because 7 + 5 = 12.</p></div>
+    <div style="background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px;margin:14px 0;text-align:center;">
+      <svg viewBox="0 0 260 70" width="100%" style="max-width:320px;">
+        <rect x="10" y="15" width="40" height="40" fill="#8a3a12" opacity="0.15" stroke="#8a3a12"/>
+        <text x="30" y="40" text-anchor="middle" font-family="Fraunces" font-size="18" fill="#8a3a12">x</text>
+        <text x="60" y="40" font-family="Source Serif 4" font-size="16" fill="#241a0f">+ 5 = 12</text>
+        <text x="160" y="40" font-family="IBM Plex Mono" font-size="11" fill="#7d6a4e">so x = 7</text>
+      </svg>
+    </div>
+    <div class="example"><span class="lbl">Worked example</span>2x + 3 = 11. First remove the 3 from both sides: 2x = 8. Then divide both sides by 2: x = 4. Whatever you do to one side of an equation, you must do to the other side too — that's the entire rule algebra runs on.</div>
+    <p style="margin:8px 0 0;"><a href="https://www.youtube.com/results?search_query=algebra+basics+for+beginners+solving+for+x+easy" target="_blank" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;">Easy video: solving for x, step by step &rarr;</a></p>
+
+    <h4 class="sub">Physics begins — force, motion, and energy</h4>
+    <div class="story"><p>Physics at this level starts with simple, observable ideas: a force is a push or a pull. Speed is how fast something covers distance (distance divided by time). Energy is the ability to do work, and it doesn't disappear, it just changes form — a ball rolling downhill turns the energy of its height into the energy of its motion.</p></div>
+    <div class="example"><span class="lbl">Worked example</span>If a car travels 100 km in 2 hours, its speed is 100 &divide; 2 = 50 km per hour.</div>
+
+    <h4 class="sub">Chemistry begins — elements, compounds, and mixtures</h4>
+    <div class="story"><p>An element is a pure substance made of only one type of atom (like oxygen or gold). A compound is two or more elements chemically joined together (like water, which is hydrogen and oxygen bonded together as H2O). A mixture is different substances just placed together without bonding chemically (like sand and salt) — you can usually separate a mixture back apart, but not a compound.</p></div>
+
+    <h4 class="sub">Biology begins — cells, the basic unit of life</h4>
+    <div class="story"><p>Every living thing, from a mango tree to you, is built from cells — tiny units that are basically the smallest thing that still counts as "alive." Plant cells and animal cells share some parts (a nucleus, which acts like the cell's control center) but plant cells also have a rigid cell wall and chloroplasts, which is what lets plants make their own food from sunlight through photosynthesis.</p></div>
+
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag2" style="color:#8a6a3a;">Reading list</span><p>The Cartoon Guide to Algebra by Larry Gonick &mdash; genuinely funny, genuinely teaches algebra properly through illustrated examples. NCERT Class 7 and 8 textbooks, free at ncert.nic.in, for the exact syllabus this chapter is built on.</p></div>
+    <div class="task"><span class="tag2">Your assignment</span><p>Write one simple algebra equation about something real in your day (for example: "I have some money, I spend 50 rupees, I have 150 left" becomes x - 50 = 150) and solve it. Then look at any packaged food label and try to spot whether an ingredient listed is closer to an element, a compound, or a mixture.</p></div>
+
+    <div class="quiz" data-quiz="m2"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">In the equation x + 5 = 12, what is x?</p>
+        <label><input type="radio" name="m2-q1" value="a"> 5</label>
+        <label><input type="radio" name="m2-q1" value="b"> 7</label>
+        <label><input type="radio" name="m2-q1" value="c"> 12</label></div>
+      <div class="q" data-answer="a"><p class="qtext">Speed is calculated as:</p>
+        <label><input type="radio" name="m2-q2" value="a"> Distance divided by time</label>
+        <label><input type="radio" name="m2-q2" value="b"> Time divided by distance</label>
+        <label><input type="radio" name="m2-q2" value="c"> Distance multiplied by time</label></div>
+      <div class="q" data-answer="c"><p class="qtext">Water (H2O) is an example of a:</p>
+        <label><input type="radio" name="m2-q3" value="a"> Pure element</label>
+        <label><input type="radio" name="m2-q3" value="b"> Mixture</label>
+        <label><input type="radio" name="m2-q3" value="c"> Compound</label></div>
+      <div class="q" data-answer="b"><p class="qtext">What lets plant cells make their own food from sunlight?</p>
+        <label><input type="radio" name="m2-q4" value="a"> The cell wall</label>
+        <label><input type="radio" name="m2-q4" value="b"> Chloroplasts</label>
+        <label><input type="radio" name="m2-q4" value="c"> The nucleus</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+  </section>
+  <div class="chapter-card"><span class="num">03</span><h3>Class 9-10 — The Board Exam Core</h3><p>Everything on India's Class 10 boards — quadratic equations, trigonometry basics, the periodic table, human biology.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">04</span><h3>Class 11 — Where It Gets Real</h3><p>Physics, chemistry, and biology split into their own depth, plus calculus beginning in math.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">05</span><h3>Class 12 — Finishing the Staircase</h3><p>Completing the syllabus, tying every earlier chapter together.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">06</span><h3>Everyday Math & Science</h3><p>Percentages, interest calculations, and basic science you actually use daily, made practical.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">07</span><h3>Competitive Exam Math</h3><p>Quantitative aptitude and reasoning, the way UPSC and similar exams actually test it.</p><span class="tag">not yet written</span></div>
+
+</div>
+<div id="page-music" class="page-section" data-course="music">
+
+  <div class="eyebrow">Course 04</div>
+  <h1>Music, from the Beginning</h1>
+  <p class="intro">Where music actually came from, how instruments were invented across different parts of the world, and a proper tour through both global and Indian traditions — folk, classical, and the artists worth knowing, lyrics read the way you'd read a poem.</p>
+
+  <div class="chapter-card"><span class="num">01</span><h3>Where Sound Became Music</h3><p>The origins of music as a human practice, long before instruments existed.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">02</span><h3>Instruments of the World</h3><p>String, wind, and percussion families, and where each one was first built.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">03</span><h3>Western Classical, from Chant to Symphony</h3><p>How European classical music developed across centuries.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">04</span><h3>Jazz, Blues, and the American Sound</h3><p>Where American popular music actually comes from.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">05</span><h3>Indian Classical — Hindustani and Carnatic</h3><p>The two major classical traditions of India, and how they differ.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">06</span><h3>India's Folk Traditions</h3><p>Region by region — Rajasthan, Punjab, Bengal, the South, and beyond.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">07</span><h3>Bollywood and Beyond</h3><p>The history of Indian film music, and regional film music traditions too.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">08</span><h3>Reading Lyrics Like Poetry</h3><p>How to actually read into what a song is saying, the way it's taught in a classroom.</p><span class="tag">not yet written</span></div>
+  <div class="chapter-card"><span class="num">09</span><h3>Artists Worth Knowing</h3><p>A global and Indian list, spanning genres and eras.</p><span class="tag">not yet written</span></div>
+
+</div>
+<div id="page-coffee" class="page-section" data-course="coffee">
+
+  <div class="eyebrow">Course 05 — Fully Built</div>
+  <h1>Becoming a Coffee Nerd</h1>
+  <p class="intro">From a goat in Ethiopia to reading a cup like a language. Seven short chapters. Read one, try the task, take the quiz.</p>
+
+  <section class="chapter" id="c1">
+    <div class="chapter-head"><span class="frame-num">01</span><h2>Where Coffee Was Born</h2></div>
+    <div class="story">
+      <p>The most repeated coffee story goes like this: an Ethiopian goat herder named Kaldi noticed his goats getting strangely energetic after eating red berries from a certain bush. He tried the berries himself, felt the same jolt, and brought them to a nearby monastery. The monks weren't impressed at first — one story says a monk threw the berries into a fire in disapproval, and the smell of roasting beans is what actually caught everyone's attention. That part is almost certainly legend, not fact. But the real history agrees on the place: coffee comes from Ethiopia, from a plant called Coffea arabica, and it was already part of local life there over a thousand years ago.</p>
+      <p>From Ethiopia, coffee crossed the Red Sea into Yemen, where it was first deliberately cultivated and brewed as a drink, around the 15th century. Sufi monks in Yemen used it to stay awake for late-night prayers. From Yemen it spread through the Middle East, into the great coffeehouses of the Ottoman Empire, then into Europe by the 1600s, where it fueled a very different kind of late-night activity: philosophers, writers, and revolutionaries meeting in coffeehouses to argue about ideas.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Next time you make coffee, say out loud (or just think) that you're drinking something that traveled from an Ethiopian hillside through Yemeni Sufi monasteries and European coffeehouses before it reached your cup. Notice if it changes how you taste it, even slightly.</p></div>
+    <div class="quiz" data-quiz="c1"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">Coffee is originally native to:</p>
+        <label><input type="radio" name="c1-q1" value="a"> Yemen</label>
+        <label><input type="radio" name="c1-q1" value="b"> Ethiopia</label>
+        <label><input type="radio" name="c1-q1" value="c"> Italy</label></div>
+      <div class="q" data-answer="a"><p class="qtext">Coffee was first deliberately cultivated and brewed as a drink in:</p>
+        <label><input type="radio" name="c1-q2" value="a"> Yemen</label>
+        <label><input type="radio" name="c1-q2" value="b"> Brazil</label>
+        <label><input type="radio" name="c1-q2" value="c"> France</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>The Coffee Book by Jonathan Morris &mdash; a British historian's global history of coffee, thorough and readable. Uncommon Grounds by Mark Pendergrast covers the same ground with more focus on the business and colonial trade side.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c1" id="cf1"><label for="cf1">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="c2">
+    <div class="chapter-head"><span class="frame-num">02</span><h2>From Bean to Cup</h2></div>
+    <div class="story">
+      <p>There are two coffee species that matter for almost everything you drink: arabica and robusta. Arabica grows at higher altitudes, takes longer to mature, and produces a smoother, more complex, often slightly sweet or fruity cup. Robusta grows at lower altitudes, is hardier and cheaper to farm, has almost double the caffeine, and tastes stronger, harsher, more bitter. Most specialty coffee you'd pay extra for is arabica. Most instant coffee and a lot of espresso blends use robusta, often mixed with arabica for body and a thicker crema.</p>
+      <p>Before any of that reaches roasting, the coffee "cherry" — yes, coffee grows as a fruit, and the bean is actually the seed inside it — has to be processed to remove the fruit around the seed. There are three common methods: washed (fruit removed before drying, gives a cleaner, brighter cup), natural or dry process (the whole cherry dries in the sun with the fruit still on, gives a heavier, fruitier, sometimes wine-like cup), and honey process (somewhere in between, some fruit left on during drying).</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Look at the packaging of any coffee you have at home or can find in a shop. See if it says arabica, robusta, or a blend, and if it mentions a processing method. If it doesn't say, that's worth noticing too — it usually means it's a cheaper, less specialty product.</p></div>
+    <div class="quiz" data-quiz="c2"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">Which species generally tastes smoother and more complex?</p>
+        <label><input type="radio" name="c2-q1" value="a"> Robusta</label>
+        <label><input type="radio" name="c2-q1" value="b"> Arabica</label>
+        <label><input type="radio" name="c2-q1" value="c"> Both taste identical</label></div>
+      <div class="q" data-answer="c"><p class="qtext">In the natural/dry process, the coffee cherry:</p>
+        <label><input type="radio" name="c2-q2" value="a"> Is never dried</label>
+        <label><input type="radio" name="c2-q2" value="b"> Has the fruit removed before drying</label>
+        <label><input type="radio" name="c2-q2" value="c"> Dries in the sun with the fruit still on</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>The World Atlas of Coffee by James Hoffmann &mdash; a working roaster and former World Barista Champion breaking down bean origins and processing region by region, with real photographs of growing regions.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c2" id="cf2"><label for="cf2">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="c3">
+    <div class="chapter-head"><span class="frame-num">03</span><h2>Roasting, Demystified</h2></div>
+    <div class="story">
+      <p>Green, unroasted coffee beans taste grassy and inedible. Roasting is what turns them into what we recognize as coffee, through heat causing chemical changes in the bean — this process is called the Maillard reaction, the same browning reaction that happens when you sear meat or toast bread. As roasting continues, the beans go through two audible "cracks," moments where trapped gas and moisture cause the bean to pop, similar to popcorn.</p>
+      <p>A light roast is stopped soon after the first crack — it keeps more of the bean's original, origin-specific flavor (fruity, floral, acidic notes), and has slightly more caffeine by volume than darker roasts, contrary to popular belief. A medium roast is more balanced, a common "everyday" roast. A dark roast is taken past the second crack — bitter, smoky, bold, with the roast itself becoming a bigger part of the flavor than where the bean came from. Neither is objectively better. Light roasts are usually preferred by people who want to taste where the coffee is from. Dark roasts are preferred by people who want a strong, consistent, bold flavor every time.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Find two different roasts — even just two different bags at a shop — and read their tasting notes on the packaging. Notice how a light roast bag often lists fruit or flower flavors, while a dark roast bag talks about "bold," "smoky," or "chocolatey."</p></div>
+    <div class="quiz" data-quiz="c3"><h3>Quick check</h3>
+      <div class="q" data-answer="a"><p class="qtext">The chemical browning reaction during roasting is called:</p>
+        <label><input type="radio" name="c3-q1" value="a"> The Maillard reaction</label>
+        <label><input type="radio" name="c3-q1" value="b"> The Kaldi effect</label>
+        <label><input type="radio" name="c3-q1" value="c"> Fermentation</label></div>
+      <div class="q" data-answer="b"><p class="qtext">Which roast generally keeps more of the bean's original origin flavor?</p>
+        <label><input type="radio" name="c3-q2" value="a"> Dark roast</label>
+        <label><input type="radio" name="c3-q2" value="b"> Light roast</label>
+        <label><input type="radio" name="c3-q2" value="c"> They're identical</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>Same as above, The World Atlas of Coffee has a full, clear chapter on roasting specifically that pairs well with this one.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c3" id="cf3"><label for="cf3">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="c4">
+    <div class="chapter-head"><span class="frame-num">04</span><h2>Brewing Methods, One by One</h2></div>
+    <div class="story">
+      <p><strong>Pour-over</strong> (like a V60 or Kalita): hot water poured slowly over grounds in a filter, gravity does the rest. Gives a clean, bright, tea-like cup because the paper filter removes most oils. <strong>French press</strong>: coarse grounds steeped directly in hot water, then pressed through a metal mesh. No paper filter means more oils and body stay in the cup — heavier, richer. <strong>Espresso</strong>: hot water forced through very finely ground, tightly packed coffee under high pressure. Concentrated, strong, and the base for lattes, cappuccinos, and cortados. <strong>Moka pot</strong>: stovetop pressure brewing, gives something between espresso and drip coffee in strength — very common in Indian and Italian households.</p>
+      <p>None of these methods is "the best" one. They're just different tools that pull out different things from the same beans. A pour-over will show you subtle fruity notes a French press would drown out. A French press will give you body and weight a pour-over can't.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>If you have access to two different brewing methods, brew the same beans both ways and taste them side by side. If you only have one method, describe in a sentence what you think a different method would change about the same coffee.</p></div>
+    <div class="quiz" data-quiz="c4"><h3>Quick check</h3>
+      <div class="q" data-answer="c"><p class="qtext">Which method uses high pressure to force water through very fine grounds?</p>
+        <label><input type="radio" name="c4-q1" value="a"> Pour-over</label>
+        <label><input type="radio" name="c4-q1" value="b"> French press</label>
+        <label><input type="radio" name="c4-q1" value="c"> Espresso</label></div>
+      <div class="q" data-answer="b"><p class="qtext">Which method leaves the most oils and body in the cup, since it uses no paper filter?</p>
+        <label><input type="radio" name="c4-q2" value="a"> Pour-over</label>
+        <label><input type="radio" name="c4-q2" value="b"> French press</label>
+        <label><input type="radio" name="c4-q2" value="c"> Moka pot only</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>The Coffee Roaster's Companion by Scott Rao, if you want to go deeper into brewing science than this course does &mdash; written by someone who consults for roasteries worldwide.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c4" id="cf4"><label for="cf4">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="c5">
+    <div class="chapter-head"><span class="frame-num">05</span><h2>Coffee Cultures Around the World</h2></div>
+    <div class="story">
+      <p>Italy gave the world espresso culture — quick, strong shots taken standing at a counter, cappuccino only in the morning, never after a meal, by local custom. Turkey and the Middle East brew coffee unfiltered, very finely ground, often with cardamom, served in small cups with the grounds settled at the bottom — sometimes even read for fortune-telling. Vietnam brews strong robusta coffee dripped slowly over sweetened condensed milk, giving a distinctly sweet, thick iced coffee. Scandinavia, especially Finland and Norway, drinks more coffee per person than almost anywhere on earth, usually lighter roasted and simply brewed, consumed constantly through the day as a social ritual. Ethiopia, where it all started, still has a formal coffee ceremony — green beans roasted fresh in front of guests, ground by hand, brewed in a clay pot called a jebena, and served in three rounds, each considered a different level of blessing.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Pick one country from this list and look up how they specifically brew and drink coffee — the ritual around it, not just the recipe. Notice how much of coffee culture is really about the ritual, not the caffeine.</p></div>
+    <div class="quiz" data-quiz="c5"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">Vietnamese iced coffee is traditionally made with:</p>
+        <label><input type="radio" name="c5-q1" value="a"> Steamed milk foam</label>
+        <label><input type="radio" name="c5-q1" value="b"> Sweetened condensed milk</label>
+        <label><input type="radio" name="c5-q1" value="c"> Cardamom only</label></div>
+      <div class="q" data-answer="a"><p class="qtext">The Ethiopian coffee ceremony traditionally serves coffee in:</p>
+        <label><input type="radio" name="c5-q2" value="a"> Three rounds</label>
+        <label><input type="radio" name="c5-q2" value="b"> One shot only</label>
+        <label><input type="radio" name="c5-q2" value="c"> A moka pot</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>Coffee: A Global History by Jonathan Morris again, this one leans harder into how different cultures adopted and reshaped coffee drinking.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c5" id="cf5"><label for="cf5">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="c6">
+    <div class="chapter-head"><span class="frame-num">06</span><h2>Coffee in India</h2></div>
+    <div class="story">
+      <p>Indian filter coffee, especially in the South, has its own distinct method: a metal filter device brews strong decoction separately, which is then mixed with hot milk and sugar and poured back and forth between two vessels (called "meter coffee" for the froth this creates) to cool it and build foam, served in a steel tumbler and davarah (cup and saucer). This tradition goes back to coffee cultivation introduced in the Chikmagalur hills of Karnataka in the 1600s, legend says by a pilgrim named Baba Budan who smuggled seven coffee beans out of Yemen strapped to his chest, since exporting live seeds was forbidden at the time.</p>
+      <p>India is actually a serious coffee-growing country, not just a tea one — Karnataka, Kerala, and Tamil Nadu produce most of it, largely grown in the shade of larger trees rather than open fields, which is considered good for both flavor and biodiversity. In the last decade, a specialty coffee scene has grown fast in Indian cities — small-batch roasters, pour-over cafes, and Indian-grown single-origin beans being sold with the same care as imported ones.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>If you can, try South Indian filter coffee made properly — with a filter device, not instant mix — and notice the difference decoction makes versus regular brewed coffee with milk added after.</p></div>
+    <div class="quiz" data-quiz="c6"><h3>Quick check</h3>
+      <div class="q" data-answer="a"><p class="qtext">Coffee cultivation in India is traditionally linked to which region?</p>
+        <label><input type="radio" name="c6-q1" value="a"> Chikmagalur, Karnataka</label>
+        <label><input type="radio" name="c6-q1" value="b"> Darjeeling, West Bengal</label>
+        <label><input type="radio" name="c6-q1" value="c"> Jaipur, Rajasthan</label></div>
+      <div class="q" data-answer="b"><p class="qtext">Indian coffee is largely grown:</p>
+        <label><input type="radio" name="c6-q2" value="a"> In open, unshaded fields</label>
+        <label><input type="radio" name="c6-q2" value="b"> In the shade of larger trees</label>
+        <label><input type="radio" name="c6-q2" value="c"> Indoors in greenhouses</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>Filter Coffee, Fillet Chicken by Krishna Shastri Devulapalli &mdash; a memoir soaked in South Indian food culture including filter coffee, written by an Indian author, funny and specific.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c6" id="cf6"><label for="cf6">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="c7">
+    <div class="chapter-head"><span class="frame-num">07</span><h2>Becoming a Coffee Nerd</h2></div>
+    <div class="story">
+      <p>Professional coffee tasters use a process called "cupping" — smelling the dry grounds, then the wet grounds after hot water is added, then slurping the coffee loudly on purpose (it sprays the liquid across your whole tongue and helps you catch more flavor and aroma at once). They score coffee on things like aroma, acidity (the bright, crisp quality, not sourness), body (how heavy or light it feels in the mouth), and finish (what lingers after you swallow).</p>
+      <p>You don't need equipment to start building this vocabulary. Next time you drink coffee, ask yourself three questions: what does it smell like before you taste it (fruity, nutty, chocolatey, floral, earthy)? How does it feel in your mouth (thin like tea, or heavy like cream)? What's the aftertaste once it's gone? Answering these three questions every time, out loud or in a small notebook, is genuinely most of what separates a coffee nerd from someone who just drinks coffee.</p>
+    </div>
+    <div class="task"><span class="tag">Try this — your final assignment for this course</span><p>Pick one coffee you drink regularly. Write down, in your own words: the smell, the mouthfeel, and the aftertaste. Do this three times over one week with the same coffee, and see if your vocabulary for describing it gets more specific each time.</p></div>
+    <div class="quiz" data-quiz="c7"><h3>Quick check</h3>
+      <div class="q" data-answer="c"><p class="qtext">The professional tasting process where coffee is loudly slurped is called:</p>
+        <label><input type="radio" name="c7-q1" value="a"> Roasting</label>
+        <label><input type="radio" name="c7-q1" value="b"> Decoction</label>
+        <label><input type="radio" name="c7-q1" value="c"> Cupping</label></div>
+      <div class="q" data-answer="a"><p class="qtext">In coffee tasting, "acidity" refers to:</p>
+        <label><input type="radio" name="c7-q2" value="a"> A bright, crisp quality, not sourness</label>
+        <label><input type="radio" name="c7-q2" value="b"> How bitter the coffee is</label>
+        <label><input type="radio" name="c7-q2" value="c"> The amount of caffeine</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>Cup Notes columns and blog posts from Perfect Daily Grind (perfectdailygrind.com) are free and written by working coffee professionals if you want to keep building tasting vocabulary after this course.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="c7" id="cf7"><label for="cf7">Mark this chapter done</label></div>
+  </section>
+
+
+</div>
+
+
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page-section').forEach(el=>el.classList.remove('active'));
+  const target = document.getElementById('page-'+name);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('.topnav button').forEach(b=>b.classList.remove('active'));
+  const btn = document.querySelector('.topnav button[data-page="'+name+'"]');
+  if(btn) btn.classList.add('active');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+document.addEventListener('click', function(e){
+  const btn = e.target.closest('.quizCheck');
+  if(!btn) return;
+  const quiz = btn.closest('.quiz');
+  if(!quiz) return;
+  const qs = quiz.querySelectorAll('.q');
+  let correctCount = 0;
+  qs.forEach(function(q){
+    const answer = q.dataset.answer;
+    const selected = q.querySelector('input[type=radio]:checked');
+    q.querySelectorAll('label').forEach(l=>{ l.classList.remove('correct','incorrect'); l.style.borderColor=''; l.style.background=''; });
+    if(selected){
+      const chosenLabel = selected.closest('label');
+      if(selected.value === answer){ chosenLabel.classList.add('correct'); chosenLabel.style.borderColor='#3a7d3a'; chosenLabel.style.background='rgba(58,125,58,0.15)'; correctCount++; }
+      else {
+        chosenLabel.classList.add('incorrect'); chosenLabel.style.borderColor='#a13a3a'; chosenLabel.style.background='rgba(161,58,58,0.15)';
+        const correctInput = q.querySelector('input[value="'+answer+'"]');
+        if(correctInput){ const cl = correctInput.closest('label'); cl.classList.add('correct'); cl.style.borderColor='#3a7d3a'; cl.style.background='rgba(58,125,58,0.15)'; }
+      }
+    }
+  });
+  const result = quiz.querySelector('.quizResult');
+  if(result) result.textContent = correctCount + ' / ' + qs.length + ' correct';
+});
+
+const storageKey = 'vini-school-progress';
+async function loadAll(){ try{ const r = await window.storage.get(storageKey, false); return r ? JSON.parse(r.value) : {}; } catch(e){ return {}; } }
+async function saveAll(state){ try{ await window.storage.set(storageKey, JSON.stringify(state), false); }catch(e){} }
+
+function applyDoneState(state){
+  document.querySelectorAll('input[type=checkbox][data-key]').forEach(cb=>{
+    if(state[cb.dataset.key] !== undefined) cb.checked = !!state[cb.dataset.key];
+  });
+  document.querySelectorAll('textarea[data-key]').forEach(ta=>{
+    if(state[ta.dataset.key] !== undefined) ta.value = state[ta.dataset.key];
+  });
+  document.querySelectorAll('.chapter-tile[data-key]').forEach(tile=>{
+    tile.classList.toggle('done', !!state[tile.dataset.key]);
+  });
+}
+
+function openChapter(courseKey, chapterId){
+  const page = document.getElementById('page-'+courseKey);
+  if(!page) return;
+  page.querySelectorAll('.chapter-view').forEach(v=>v.classList.remove('open'));
+  const view = page.querySelector('#'+chapterId+'-view');
+  if(view) view.classList.add('open');
+  const menu = page.querySelector('.chapter-tile-grid');
+  if(menu) menu.style.display = 'none';
+  const catFilter = page.querySelector('.cat-filter');
+  if(catFilter) catFilter.style.display = 'none';
+  let back = page.querySelector('.chapter-back');
+  if(!back){
+    back = document.createElement('button');
+    back.className = 'chapter-back';
+    back.textContent = '\u2190 back to chapters';
+    page.insertBefore(back, page.firstChild.nextSibling);
+  }
+  back.style.display = 'block';
+  back.onclick = function(){ closeChapter(courseKey); };
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function closeChapter(courseKey){
+  const page = document.getElementById('page-'+courseKey);
+  if(!page) return;
+  page.querySelectorAll('.chapter-view').forEach(v=>v.classList.remove('open'));
+  const menu = page.querySelector('.chapter-tile-grid');
+  if(menu) menu.style.display = 'grid';
+  const catFilter = page.querySelector('.cat-filter');
+  if(catFilter) catFilter.style.display = 'flex';
+  const back = page.querySelector('.chapter-back');
+  if(back) back.style.display = 'none';
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+function filterCategory(courseKey, cat){
+  const page = document.getElementById('page-'+courseKey);
+  if(!page) return;
+  page.querySelectorAll('.cat-filter button').forEach(b=>b.classList.toggle('active', b.dataset.cat===cat));
+  page.querySelectorAll('.chapter-tile-grid .chapter-tile').forEach(tile=>{
+    tile.style.display = (cat==='all' || tile.dataset.category===cat) ? '' : 'none';
+  });
+}
+
+// Build tile menus for each course by scanning existing chapter/chapter-full/chapter-card elements
+function buildTileMenus(){
+  document.querySelectorAll('.page-section[data-course]').forEach(page=>{
+    const courseKey = page.dataset.course;
+    const builtChapters = Array.from(page.querySelectorAll(':scope .chapter, :scope .chapter-full'));
+    const skeletonCards = Array.from(page.querySelectorAll(':scope .chapter-card'));
+    if(builtChapters.length === 0 && skeletonCards.length === 0) return;
+
+    const grid = document.createElement('div');
+    grid.className = 'chapter-tile-grid';
+
+    const hasCategories = skeletonCards.some(c=>c.dataset.category) || builtChapters.some(c=>c.dataset.category);
+    let catFilterEl = null;
+    if(hasCategories){
+      const cats = ['all'];
+      [...builtChapters, ...skeletonCards].forEach(c=>{ if(c.dataset.category && !cats.includes(c.dataset.category)) cats.push(c.dataset.category); });
+      catFilterEl = document.createElement('div');
+      catFilterEl.className = 'cat-filter';
+      const labelMap = {all:'All', history:'History', geography:'Geography', polity:'Polity', currentaffairs:'Current Affairs', overview:'Exam Guide'};
+      cats.forEach(c=>{
+        const b = document.createElement('button');
+        b.textContent = labelMap[c] || c;
+        b.dataset.cat = c;
+        if(c==='all') b.classList.add('active');
+        b.onclick = function(){ filterCategory(courseKey, c); };
+        catFilterEl.appendChild(b);
+      });
+    }
+
+    builtChapters.forEach((chEl, idx)=>{
+      const id = chEl.id || (courseKey+'-b'+idx);
+      chEl.id = id;
+      chEl.classList.add('chapter-view');
+      chEl.id = id;
+      const wrapperId = id + '-view';
+      chEl.id = wrapperId;
+      const titleEl = chEl.querySelector('h2, h3');
+      const title = titleEl ? titleEl.textContent.trim() : ('Chapter ' + (idx+1));
+      const numEl = chEl.querySelector('.frame-num, .num');
+      const num = numEl ? numEl.textContent.trim() : String(idx+1).padStart(2,'0');
+      const checkbox = chEl.querySelector('input[type=checkbox][data-key]');
+      const key = checkbox ? checkbox.dataset.key : null;
+
+      const tile = document.createElement('button');
+      tile.className = 'chapter-tile';
+      if(key) tile.dataset.key = key;
+      if(chEl.dataset.category) tile.dataset.category = chEl.dataset.category;
+      tile.innerHTML = '<span class="tnum">'+num+'</span><span class="ttitle">'+title+'</span>';
+      tile.onclick = function(){ openChapter(courseKey, wrapperId); };
+      grid.appendChild(tile);
+    });
+
+    skeletonCards.forEach((cardEl, idx)=>{
+      const numEl = cardEl.querySelector('.num');
+      const titleEl = cardEl.querySelector('h3');
+      const num = numEl ? numEl.textContent.trim() : '';
+      const title = titleEl ? titleEl.textContent.trim() : ('Coming soon');
+      const tile = document.createElement('div');
+      tile.className = 'chapter-tile locked';
+      if(cardEl.dataset.category) tile.dataset.category = cardEl.dataset.category;
+      tile.innerHTML = '<span class="tnum">'+num+'</span><span class="ttitle">'+title+'</span><span class="tnote">not yet written</span>';
+      grid.appendChild(tile);
+      cardEl.style.display = 'none';
+    });
+
+    builtChapters.forEach(chEl=>{ /* already hidden via CSS .chapter-view default */ });
+
+    const introEl = page.querySelector('p.intro, .home-hero');
+    let insertAfter = introEl || page.firstElementChild;
+    if(catFilterEl) insertAfter.parentNode.insertBefore(catFilterEl, insertAfter.nextSibling);
+    (catFilterEl || insertAfter).parentNode.insertBefore(grid, (catFilterEl || insertAfter).nextSibling);
+  });
+}
+
+(async function init(){
+  buildTileMenus();
+  const state = await loadAll();
+  applyDoneState(state);
+  document.addEventListener('change', async function(e){
+    if(e.target.matches('input[type=checkbox][data-key]')){
+      const current = await loadAll();
+      current[e.target.dataset.key] = e.target.checked;
+      await saveAll(current);
+      applyDoneState(current);
+    }
+  });
+  const saveBtn = document.getElementById('saveBtn');
+  if(saveBtn){
+    saveBtn.addEventListener('click', async ()=>{
+      const current = await loadAll();
+      document.querySelectorAll('textarea[data-key]').forEach(ta=>{ current[ta.dataset.key] = ta.value; });
+      await saveAll(current);
+      const status = document.getElementById('saveStatus');
+      if(status) status.textContent = 'saved just now';
+    });
+  }
+})();
+</script>
+
+
+</body>
+</html>
