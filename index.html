@@ -165,6 +165,25 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
 body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.7;}
 h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
 a{color:var(--amber);}
+main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin:0 0 12px;}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.1;margin:0 0 16px;}
+main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30px;}
+.block{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px 22px;margin-bottom:16px;}
+.block h2{font-size:18px;margin:0 0 12px;}
+.block h3.sub{font-size:13px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--muted-2);margin:16px 0 8px;}
+.taglist{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 4px;}
+.taglist span{background:var(--surface-2);border:1px solid var(--line);border-radius:14px;padding:5px 12px;font-size:13px;color:var(--text);}
+.block p{font-size:14.5px;color:var(--muted);margin:0 0 10px;}
+.book{font-size:14.5px;color:var(--text);margin:0 0 8px;padding-left:16px;position:relative;}
+.book::before{content:"—";position:absolute;left:0;color:var(--amber);}
+
+
+:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--amber:#8a3a12;--amber-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.7;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--amber);}
 .back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--muted);}
 main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin:24px 0 12px;}
@@ -199,21 +218,38 @@ h4.sub{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-transform:upp
 .quizResult{margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);}
 
 
-:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--accent:#8a3a12;--accent-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
+:root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--amber:#8a3a12;--amber-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
 *{box-sizing:border-box;}
-body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.65;}
-h1,h2,.display{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
-a{color:var(--accent);}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Source Serif 4',Georgia,serif;line-height:1.7;}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:var(--amber);}
 main{max-width:720px;margin:0 auto;padding:40px 20px 100px;}
-.back{font-family:'IBM Plex Mono',monospace;font-size:12px;text-decoration:none;color:var(--muted);}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin:24px 0 12px;}
-h1{font-size:clamp(26px,6vw,38px);line-height:1.1;margin:0 0 14px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin:0 0 12px;}
+h1{font-size:clamp(28px,6vw,42px);line-height:1.1;margin:0 0 16px;}
 main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30px;}
-.chapter-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-bottom:12px;}
-.chapter-card .num{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);}
-.chapter-card h3{margin:6px 0 6px;font-size:17px;}
-.chapter-card p{margin:0;color:var(--muted);font-size:14px;}
-.tag{display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted-2);border:1px solid var(--line);padding:3px 8px;border-radius:3px;}
+.chapter{padding:40px 0 30px;border-top:1px solid var(--line);}
+.chapter:first-of-type{border-top:none;}
+.chapter-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px;}
+.frame-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);border:1px solid var(--amber);padding:2px 7px;border-radius:2px;}
+.chapter h2{font-size:22px;margin:0;}
+.story p{color:#2a1f13;font-size:15.5px;}
+.story p:first-of-type::first-letter{font-family:'Fraunces',serif;font-size:2.2em;float:left;line-height:0.8;padding-right:6px;color:var(--amber);font-weight:600;}
+.task{background:var(--surface);border:1px solid #c9ad7a;border-radius:6px;padding:16px 18px;margin:18px 0;}
+.task .tag{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--amber);font-weight:600;display:block;margin-bottom:6px;}
+.task p{margin:0 0 8px;font-size:14.5px;}
+.quiz{background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin:18px 0;}
+.quiz h3{font-size:13px;font-family:'IBM Plex Mono',monospace;text-transform:uppercase;color:var(--muted-2);margin:0 0 12px;}
+.quiz .q{margin-bottom:14px;}
+.quiz .qtext{font-size:14.5px;font-weight:600;margin:0 0 8px;}
+.quiz label{display:block;font-size:14px;color:var(--muted);padding:6px 10px;margin-bottom:4px;border:1px solid var(--line);border-radius:4px;cursor:pointer;}
+.quiz label.correct{border-color:#3a7d3a;background:rgba(58,125,58,0.15);color:var(--text);}
+.quiz label.incorrect{border-color:#a13a3a;background:rgba(161,58,58,0.15);color:var(--text);}
+.quiz input{margin-right:8px;accent-color:var(--amber);}
+.quizCheck{background:var(--amber);color:var(--bg);border:none;padding:8px 14px;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:12px;cursor:pointer;}
+.quizResult{margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--amber);}
+.track-row{display:flex;align-items:center;gap:10px;margin-top:16px;}
+.track-row input{width:16px;height:16px;accent-color:var(--amber);}
+.track-row label{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);}
 
 
 :root{--bg:#f2e8d5;--surface:#e9dcc0;--surface-2:#e2d3ae;--line:#cdb98f;--amber:#8a3a12;--amber-hover:#a8481a;--text:#241a0f;--muted:#5c4a34;--muted-2:#7d6a4e;}
@@ -292,50 +328,30 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
 </style>
 </head>
 <body>
-
 <nav class="topnav">
 <button class="active" data-page="home" onclick="showPage('home')">Home</button>
 <button data-page="film" onclick="showPage('film')">Film & Photography</button>
 <button data-page="upsc" onclick="showPage('upsc')">History / Geo / Polity</button>
+<button data-page="geo" onclick="showPage('geo')">Geopolitics & Bureaucracy</button>
 <button data-page="math" onclick="showPage('math')">Math & Science</button>
 <button data-page="music" onclick="showPage('music')">Music</button>
 <button data-page="coffee" onclick="showPage('coffee')">Coffee</button>
 
 </nav>
 
-
 <div id="page-home" class="page-section active">
   <div class="home-hero">
     <div class="eyebrow" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#8a3a12;margin-bottom:14px;">The Whole Curriculum</div>
     <h1>Everything you're learning, in one place.</h1>
-    <p>One file, always. Tap a course below, then tap a chapter tile to open just that chapter. Tiles turn green once you mark them done.</p>
+    <p>One file, always. Tap a course, then a chapter tile. Tiles turn green once marked done.</p>
   </div>
   <div class="home-grid">
-    <button class="home-card" onclick="showPage('film')">
-      <span class="status live">Fully built</span>
-      <h2>Film & Photography</h2>
-      <p>The story of light, lenses, and cameras — from the camera obscura to your own Sony a7S. 11 chapters, tasks, quizzes, reading lists.</p>
-    </button>
-    <button class="home-card" onclick="showPage('upsc')">
-      <span class="status partial">Full syllabus + Chapter 1 built</span>
-      <h2>History, Geography, Polity & Current Affairs</h2>
-      <p>Filter by section, full Prelims/Mains/Interview syllabus, official past papers, Chapter 1 on colonialism, and a current affairs notebook.</p>
-    </button>
-    <button class="home-card" onclick="showPage('math')">
-      <span class="status live">Fully built, Class 5 through 12</span>
-      <h2>Math & Science, from Class 5</h2>
-      <p>All 7 chapters done — basics through Class 12, everyday math, and competitive exam quant, with diagrams and easy videos throughout.</p>
-    </button>
-    <button class="home-card" onclick="showPage('music')">
-      <span class="status partial">Chapter list ready</span>
-      <h2>Music, from the Beginning</h2>
-      <p>Where music started, instruments, world traditions, Indian classical and folk, and the artists worth knowing.</p>
-    </button>
-    <button class="home-card" onclick="showPage('coffee')">
-      <span class="status live">Fully built</span>
-      <h2>Becoming a Coffee Nerd</h2>
-      <p>From the goat legend in Ethiopia to brewing methods to India's own filter coffee tradition. All 7 chapters, with reading lists.</p>
-    </button>
+    <button class="home-card" onclick="showPage('film')"><span class="status live">Fully built</span><h2>Film & Photography</h2><p>11 chapters, tasks, quizzes, reading lists.</p></button>
+    <button class="home-card" onclick="showPage('upsc')"><span class="status live">11 chapters + master reading list</span><h2>History, Geography, Polity & Current Affairs</h2><p>Colonialism, world wars, Cold War, Japan-Korea-China, China-Tibet, Israel-Palestine, India's history and government, political theory.</p></button>
+    <button class="home-card" onclick="showPage('geo')"><span class="status partial">Topic & book lists ready</span><h2>Geopolitics & Bureaucracy</h2><p>IR theory, global institutions, current flashpoints, India's foreign policy, bureaucracy.</p></button>
+    <button class="home-card" onclick="showPage('math')"><span class="status live">Fully built, Class 5 through 12</span><h2>Math & Science, from Class 5</h2><p>All 7 chapters done.</p></button>
+    <button class="home-card" onclick="showPage('music')"><span class="status live">Fully built</span><h2>Music, from the Beginning</h2><p>All 9 chapters — origins, instruments, world traditions, Indian classical and folk, film music, and artists.</p></button>
+    <button class="home-card" onclick="showPage('coffee')"><span class="status live">Fully built</span><h2>Becoming a Coffee Nerd</h2><p>All 7 chapters, with reading lists.</p></button>
   </div>
 </div>
 
@@ -946,6 +962,39 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
   </div>
 
   <div class="chapter-card" data-category="overview" style="background:var(--surface-2);">
+    <span class="num">MASTER READING LIST</span>
+    <h3>Historians and Books, Country by Country</h3>
+    <p style="margin-bottom:14px;">For everything not yet built into its own chapter — start here. One or two historians per region, writing from inside that history, plus their most essential book.</p>
+
+    <p style="margin:14px 0 4px;"><strong>India</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Romila Thapar (ancient and early India, "Early India: From the Origins to AD 1300"). Ramachandra Guha (modern India, "India After Gandhi"). Bipan Chandra (freedom struggle, "India's Struggle for Independence"). Irfan Habib (Mughal-era economic history).</p>
+
+    <p style="margin:14px 0 4px;"><strong>Britain and Europe</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Eric Hobsbawm (his "Age of" quartet covering 1789-1991 is considered a masterwork of modern European history). Niall Ferguson (British Empire history, more sympathetic to empire than most, worth reading precisely for that contrast — "Empire"). Ian Kershaw (Nazi Germany specifically, "Hitler: 1889-1936" and its sequel are the standard biography).</p>
+
+    <p style="margin:14px 0 4px;"><strong>United States</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Howard Zinn ("A People's History of the United States" — deliberately tells US history from the perspective of workers, enslaved people, and Native Americans rather than the usual leader-centered version). Doris Kearns Goodwin (presidential history). Ibram X. Kendi (race and policy history, "Stamped from the Beginning").</p>
+
+    <p style="margin:14px 0 4px;"><strong>Middle East</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Albert Hourani ("A History of the Arab Peoples," the standard broad overview). Rashid Khalidi (Palestinian historian, "The Hundred Years' War on Palestine"). Bernard Lewis (Western academic perspective on the region, more contested among Arab historians for perceived Orientalist framing — worth reading to understand that critique too).</p>
+
+    <p style="margin:14px 0 4px;"><strong>Africa</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Chinua Achebe, primarily a novelist but "Things Fall Apart" is essential for understanding colonialism's impact from a Nigerian perspective. Adam Hochschild (Congo specifically, "King Leopold's Ghost"). Basil Davidson (broad African history, wrote extensively pushing back against colonial-era narratives that Africa had no history worth recording).</p>
+
+    <p style="margin:14px 0 4px;"><strong>China and East Asia</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Jonathan Spence ("The Search for Modern China," the standard English-language overview). Iris Chang (Nanjing Massacre specifically). Bruce Cumings (Korea, "The Korean War: A History").</p>
+
+    <p style="margin:14px 0 4px;"><strong>Latin America</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Eduardo Galeano ("Open Veins of Latin America," a passionate account of colonial and neo-colonial exploitation, foundational reading across the continent). John Charles Chasteen ("Born in Blood and Fire," a more conventional academic overview).</p>
+
+    <p style="margin:14px 0 4px;"><strong>Russia and the Soviet Union</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px;">Orlando Figes ("A People's Tragedy," on the Russian Revolution). Anne Applebaum ("Gulag," on the Soviet forced labor camp system, and "Red Famine" on the Ukrainian famine specifically).</p>
+
+    <p style="margin:14px 0 4px;"><strong>General world history, one-volume overviews</strong></p>
+    <p style="font-size:14px;color:var(--muted);margin:0;">A History of the World by J.M. Roberts. Sapiens by Yuval Noah Harari (more a big-idea framework than a detailed history, good for connecting dots rather than dates). The Silk Roads by Peter Frankopan, world history told through trade and Asia's centrality, a genuinely different lens than the usual Europe-centered version.</p>
+  </div>
+
+  <div class="chapter-card" data-category="overview" style="background:var(--surface-2);">
     <span class="num">THE EXAM</span>
     <h3>How the UPSC Civil Services Exam Actually Works</h3>
     <p style="margin-bottom:14px;">Three stages, and only the last two count toward your final rank.</p>
@@ -1002,13 +1051,212 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
     </div>
     <div class="track-row"><input type="checkbox" data-key="u1" id="cbu1"><label for="cbu1">Mark this chapter done</label></div>
   </section>
-  <div class="chapter-card" data-category="history"><span class="num">02</span><h3>Those Who Fought Back</h3><p>Lumumba in Congo, Bolívar in South America, tribal and indigenous resistance across Africa, the Americas, and Asia, and India's own freedom leaders.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card" data-category="history"><span class="num">03</span><h3>Two World Wars, One Century</h3><p>How they redrew the map of the entire world, and set up almost every conflict since.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card" data-category="history"><span class="num">04</span><h3>India After Midnight</h3><p>Partition, the writing of the Constitution, and the republic's first uncertain decades.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card" data-category="geography"><span class="num">05</span><h3>The Shape of the Earth</h3><p>Physical geography, climate systems, and finally getting the world map to stick in your head for good.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card" data-category="geography"><span class="num">06</span><h3>Who Runs Where</h3><p>Capitals, current heads of state and government, and how to actually keep track of them.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card" data-category="polity"><span class="num">07</span><h3>How India Governs Itself</h3><p>The Constitution, Parliament, the judiciary, elections — India's polity, in plain language.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card" data-category="polity"><span class="num">08</span><h3>Ideas That Shaped Nations</h3><p>Political theory — liberalism, socialism, nationalism, Gandhian thought, and where India's own thinkers fit in.</p><span class="tag">not yet written</span></div>
+  <section class="chapter-full" id="u2" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">02 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">Those Who Fought Back</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p><strong>Congo — Patrice Lumumba.</strong> When Congo won independence from Belgium in 1960, Lumumba became its first democratically elected Prime Minister. He lasted less than three months. His nationalization plans for Congo's mineral wealth alarmed Belgium and the United States during the Cold War, and he was captured, tortured, and executed in January 1961, with direct Belgian involvement later confirmed by Belgium's own government, which issued a formal apology in 2002.</p>
+    <p><strong>South America — Simón Bolívar.</strong> Born in Venezuela in 1783, Bolívar led independence movements across what are now Venezuela, Colombia, Ecuador, Panama, Peru, and Bolivia (named after him) against Spanish colonial rule in the early 1800s. He's still called "El Libertador" across the continent, though his own later years were marked by disillusionment as the newly independent states fractured into conflict rather than the unified South America he'd envisioned.</p>
+    <p><strong>Algeria — the FLN and Frantz Fanon.</strong> Algeria's war for independence from France (1954-1962) was one of the 20th century's bloodiest decolonization struggles, with estimates of Algerian deaths ranging from several hundred thousand to over a million depending on the source. Frantz Fanon, a psychiatrist from Martinique who joined the Algerian cause, wrote "The Wretched of the Earth" from inside this struggle, arguing colonialism's violence could only be answered by the colonized reclaiming their own agency, sometimes through force.</p>
+    <p><strong>India — a movement, not one person.</strong> Mahatma Gandhi's nonviolent non-cooperation is the most globally known thread, but the freedom movement was never singular: Bhagat Singh and revolutionary groups pursued armed resistance; Subhas Chandra Bose formed the Indian National Army to fight the British militarily with Axis support during WWII; B.R. Ambedkar fought as much against caste oppression within Indian society as against British rule, insisting independence meant nothing if it left the caste system intact.</p>
+    <p><strong>Vietnam — Ho Chi Minh.</strong> Ho Chi Minh led Vietnam's resistance first against French colonial rule (ending in French defeat at Dien Bien Phu, 1954), and the movement he founded then fought the United States through the 1960s and into 1975, in a war that killed an estimated 1-3 million Vietnamese people alongside around 58,000 American soldiers.</p>
+    <p><strong>Kenya — the Mau Mau uprising.</strong> Kenyan fighters rose against British colonial land seizures from 1952-1960. Britain's response involved detention camps where torture was systematic and well-documented; in 2013, Britain formally acknowledged the abuse and paid compensation to elderly Mau Mau survivors, though only after decades of the British government initially destroying and hiding relevant colonial-era documents.</p>
+    <p><strong>Native America and Indigenous Australia.</strong> Resistance here looked different because colonization aimed at total settlement, not just extraction. Leaders like Tecumseh (Shawnee) and Sitting Bull (Lakota) fought military campaigns against US expansion in the 1800s. In Australia, Aboriginal resistance is less taught globally but well documented, including the Pinjarra and Frontier Wars — and the fight continues today through land rights movements, since Australia was colonized on the legal fiction of "terra nullius," land belonging to no one, despite tens of thousands of years of continuous Aboriginal presence.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">From multiple sides, on purpose</h3>
+      <p style="font-size:14px;">Wretched of the Earth by Frantz Fanon (from inside the Algerian struggle). The Autobiography of Malcolm X, co-written with Alex Haley, for how anti-colonial thought connected globally. My Bondage and My Freedom by Frederick Douglass. Bury My Heart at Wounded Knee by Dee Brown, a settler-written but heavily indigenous-testimony-sourced account of Native American resistance. Bhagat Singh's own prison writings, widely available in translation. For the colonizer's own self-justifying view, worth reading precisely to recognize the pattern: any British imperial memoir from the period, most are in the public domain and free online through Project Gutenberg.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u2" id="cbu2"><label for="cbu2">Mark this chapter done</label></div>
+  </section>
+  <section class="chapter-full" id="u3" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">03 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">Two World Wars, One Century</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p><strong>World War I (1914-1918)</strong> started with the assassination of Archduke Franz Ferdinand of Austria-Hungary, but the deeper cause was a web of alliances and colonial rivalries across Europe that turned one regional killing into a continental war within weeks. It killed roughly 15-22 million people and ended empires — Austro-Hungarian, Ottoman, Russian, and German — reshaping the map of Europe and the Middle East. The harsh reparations and territorial losses imposed on Germany by the Treaty of Versailles (1919) created exactly the economic desperation and resentment that a young Adolf Hitler would later exploit.</p>
+
+    <p><strong>The rise of Nazi Germany.</strong> Hitler became Chancellor in 1933, and within a year had dismantled German democracy entirely. Nazi ideology was built on a racial hierarchy that placed "Aryans" at the top and marked Jewish people, along with Roma, disabled people, gay people, and political dissidents, as targets for persecution and eventually extermination. Kristallnacht in 1938 was an organized, state-sanctioned pogrom against Jewish homes, businesses, and synagogues across Germany — a clear public signal of where this was heading, visible to the world well before the war started.</p>
+
+    <p><strong>The Holocaust.</strong> Between 1941 and 1945, Nazi Germany systematically murdered around six million Jewish people, roughly two-thirds of Europe's Jewish population, along with millions of others from the targeted groups above, through mass shootings, forced starvation in ghettos, and extermination camps like Auschwitz-Birkenau, Treblinka, and Sobibor, built specifically for industrial-scale killing. This is one of history's most thoroughly documented atrocities — survivor testimony, Nazi Germany's own meticulous records, and physical evidence from the camps all corroborate each other. It is not a contested event; denial of it is a documented form of antisemitism, not a legitimate "other side" of history.</p>
+
+    <p><strong>World War II (1939-1945)</strong> began when Germany invaded Poland, but by 1941 had drawn in nearly every major power: the Axis (Germany, Italy, Japan) against the Allies (Britain, the Soviet Union after Germany invaded it, the United States after Pearl Harbor, and China, which had already been at war with Japan since 1937). It remains the deadliest conflict in human history, with estimates of 70-85 million deaths worldwide, the large majority of them civilians. It ended with Germany's surrender in May 1945, and Japan's surrender in August 1945, days after the US dropped atomic bombs on Hiroshima and Nagasaki — the only use of nuclear weapons in warfare to date, killing an estimated 129,000-226,000 people, most of them civilians, a decision that remains genuinely debated by historians on both military necessity and moral grounds.</p>
+
+    <p><strong>What came out of it.</strong> The United Nations was founded in 1945 specifically to prevent a third world war. India's own independence movement accelerated in the war's aftermath, as Britain emerged financially devastated and unable to hold its empire together. The Cold War, covered in Chapter 10, began almost immediately as the wartime alliance between the US and Soviet Union collapsed into decades of rivalry.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Testimony first, analysis second</h3>
+      <p style="font-size:14px;">The Diary of a Young Girl by Anne Frank, a Jewish teenager's own words written in hiding, published by her surviving father. Night by Elie Wiesel, a survivor's own account of Auschwitz, spare and devastating. If This Is a Man by Primo Levi, another survivor's own testimony. The Rise and Fall of the Third Reich by William L. Shirer for the broader historical analysis, written by a journalist who was actually reporting from Berlin in the 1930s.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u3" id="cbu3"><label for="cbu3">Mark this chapter done</label></div>
+  </section>
+  <section class="chapter-full" id="u4" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">04 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">India After Midnight</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p><strong>Partition, August 1947.</strong> British India was split into India and Pakistan along religious lines, decided in weeks by a British lawyer, Cyril Radcliffe, who had never been to India before and drew the border in about five weeks using outdated maps and census data. The result was the largest mass migration in human history — an estimated 10-20 million people crossed borders in both directions, and communal violence during the crossing killed anywhere from 200,000 to 2 million people depending on the estimate, with widespread documented violence against women on both sides. Gandhi was assassinated by Nathuram Godse in January 1948, a Hindu nationalist who believed Gandhi had been too accommodating toward Pakistan and Muslims during Partition.</p>
+    <p><strong>Integrating the princely states.</strong> British India wasn't just provinces — over 560 semi-independent princely states also had to be persuaded or pressured into joining India, a process led mainly by Sardar Vallabhbhai Patel, India's first Home Minister, earning him the title "Iron Man of India." Most joined peacefully; Hyderabad required a military action (Operation Polo, 1948) after its ruler resisted; Jammu and Kashmir's accession, made under pressure from a Pakistani-backed tribal invasion in October 1947, set off the first India-Pakistan war and the still-unresolved Kashmir dispute.</p>
+    <p><strong>Writing the Constitution.</strong> The Constituent Assembly, chaired by Dr. B.R. Ambedkar as head of the Drafting Committee, worked for nearly three years, finally adopting India's Constitution on 26 November 1949, effective 26 January 1950 (why that date is Republic Day). It's the longest written constitution of any sovereign country in the world, and Ambedkar, himself from a Dalit background, insisted on strong protections against caste discrimination and reserved seats for historically oppressed communities, viewing legal equality as meaningless without structural correction.</p>
+    <p><strong>The first decades.</strong> Jawaharlal Nehru, India's first Prime Minister, pursued a mixed economy (state-controlled heavy industry alongside private enterprise) and a foreign policy of non-alignment, refusing to formally side with either the US or Soviet bloc during the Cold War, co-founding the Non-Aligned Movement with Yugoslavia's Tito and Egypt's Nasser. India fought wars with China (1962, a loss that shocked the country) and Pakistan (1965, 1971 — the 1971 war ending with India's decisive role in Bangladesh's creation from what had been East Pakistan). In 1975, Prime Minister Indira Gandhi declared a state of Emergency, suspending civil liberties and press freedom for 21 months amid political and economic crisis, one of the most controversial periods in India's democratic history, ending when she called elections in 1977 and was voted out.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Books on this period</h3>
+      <p style="font-size:14px;">India After Gandhi by Ramachandra Guha — widely considered the single best one-volume history of independent India. The Discovery of India by Jawaharlal Nehru, his own reflections written in prison. Train to Pakistan by Khushwant Singh, a novel set during Partition, unflinching about the violence on both sides. Ambedkar's own writings, particularly "Annihilation of Caste," are essential and freely available online.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u4" id="cbu4"><label for="cbu4">Mark this chapter done</label></div>
+  </section>
+  <section class="chapter-full" id="u5" data-category="geography" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">05 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">The Shape of the Earth</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+
+    <p><strong>How many countries are there?</strong> The UN recognizes 193 member states, plus a small number of observer or disputed states (like Vatican City and Palestine) that push the commonly cited total closer to 195-197 depending on who's counting and which disputed territories you include.</p>
+
+    <p><strong>Memorizing them — by continent, not alphabetically.</strong> Trying to memorize 195 countries as one long list fails almost everyone. Instead, learn them in clusters of geographic neighbors: Europe naturally groups into Western (France, Germany, Spain, Italy, UK), Northern/Scandinavian (Norway, Sweden, Denmark, Finland), Eastern (Poland, Ukraine, Romania), and the Balkans. Africa groups into North African/Arab states (Egypt, Libya, Algeria, Morocco), West Africa (Nigeria, Ghana, Senegal), East Africa (Kenya, Ethiopia, Tanzania), and Southern Africa (South Africa, Zimbabwe, Zambia). Learn one cluster a week, always with its capitals attached at the same time, never separately — country and capital as one unit, not two things to memorize twice.</p>
+
+    <div style="background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:16px;margin:14px 0;">
+      <p style="font-size:13.5px;font-family:'IBM Plex Mono',monospace;color:var(--accent);text-transform:uppercase;margin:0 0 8px;">30 to start with</p>
+      <p style="font-size:14px;color:var(--muted);margin:0;">USA-Washington DC · UK-London · France-Paris · Germany-Berlin · Russia-Moscow · China-Beijing · Japan-Tokyo · South Korea-Seoul · India-New Delhi · Pakistan-Islamabad · Bangladesh-Dhaka · Sri Lanka-Colombo (Sri Jayawardenepura Kotte is the official capital) · Nepal-Kathmandu · Afghanistan-Kabul · Iran-Tehran · Iraq-Baghdad · Israel-Jerusalem (internationally disputed, most embassies remain in Tel Aviv) · Saudi Arabia-Riyadh · Turkey-Ankara · Egypt-Cairo · Nigeria-Abuja · South Africa-Pretoria (administrative capital; Cape Town and Bloemfontein hold other functions) · Kenya-Nairobi · Brazil-Bras&iacute;lia · Argentina-Buenos Aires · Mexico-Mexico City · Canada-Ottawa · Australia-Canberra · Indonesia-Jakarta · Vietnam-Hanoi.</p>
+    </div>
+
+    <p><strong>The lines on the globe.</strong> The Equator (0&deg; latitude) splits the earth into Northern and Southern Hemispheres. The Prime Meridian (0&deg; longitude, running through Greenwich, London) splits it into Eastern and Western Hemispheres. The Tropic of Cancer (23.5&deg;N) and Tropic of Capricorn (23.5&deg;S) mark the northernmost and southernmost points where the sun can appear directly overhead — this band between them is the tropics, generally the hottest, most humid part of the planet. The Tropic of Cancer actually runs directly through India, crossing Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura, and Mizoram. The International Date Line, roughly along 180&deg; longitude in the Pacific, is where the calendar day officially changes.</p>
+
+    <p><strong>India, on your fingertips.</strong> 28 states and 8 union territories. The Himalayas form the northern wall, the Thar Desert sits in the west (Rajasthan), the Deccan Plateau covers most of the south, and the Indo-Gangetic Plain across the north is the country's agricultural heartland, fed by the Ganga, Yamuna, and Brahmaputra river systems. The Western Ghats and Eastern Ghats are the two mountain ranges flanking the peninsula, with the Western Ghats being significantly wetter and more biodiverse due to catching the southwest monsoon first. The Northeast (Assam, Meghalaya, Manipur, Mizoram, Nagaland, Tripura, Arunachal Pradesh, Sikkim) is connected to the rest of India by the narrow Siliguri Corridor, sometimes called the "Chicken's Neck" — a genuinely important strategic geography fact, since it's only about 22km wide at its narrowest.</p>
+
+    <p><strong>Why coffee isn't Indian, but filter coffee is.</strong> This ties geography directly to climate. Coffee is native to Ethiopia's highlands. Tea is native to China's Yunnan region (and separately, wild tea also grew natively in Assam, which is why India became a major producer once the British started plantations there). The potato and tomato are native to the Andes in South America — meaning Italian tomato sauce and Irish potatoes are both, historically speaking, quite recent imports, only arriving in Europe after 1492. Chili peppers are native to the Americas too, meaning the "traditional" fiery food of India, Thailand, and Korea is all built on a plant that didn't exist in Asia before Portuguese traders brought it in the 1500s. This is climate and geography directly shaping what a country now considers "its own" food — worth remembering any time cuisine gets treated as a fixed, ancient national identity rather than a history of trade and climate.</p>
+    </div>
+
+    <div class="task" style="margin-top:16px;"><span class="tag2">Your assignment</span><p>Pick one continent's cluster of countries and capitals from the box above. Draw a rough blank map of that continent from memory, then fill in as many countries and capitals as you can before checking your answers.</p></div>
+
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Geography and food history</h3>
+      <p style="font-size:14px;">Guns, Germs, and Steel by Jared Diamond, for how geography and climate shaped which societies industrialized first. The Columbian Exchange by Alfred Crosby, the definitive account of how crops, animals, and diseases moved between the Americas and the rest of the world after 1492. Prisoners of Geography by Tim Marshall, a very readable modern look at how mountains, rivers, and coastlines still shape politics today.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u5" id="cbu5"><label for="cbu5">Mark this chapter done</label></div>
+  </section>
+  <div class="chapter-card" data-category="geography" style="background:var(--surface-2);">
+    <span class="num">06 — READING LIST INSTEAD</span>
+    <h3>Who Runs Where</h3>
+    <p style="font-size:14px;">This one goes stale within months, so a written chapter would mislead you a year from now. Instead: bookmark the CIA World Factbook (free, updated regularly) for current heads of state, and check Wikipedia's "List of current heads of state and government" page before any exam — both are reliable and current.</p>
+  </div>
+  <section class="chapter-full" id="u7" data-category="polity" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">07 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">How India Governs Itself</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p><strong>The basic structure.</strong> India is a federal parliamentary democracy — federal meaning power is split between central and state governments, parliamentary meaning the executive (Prime Minister and Cabinet) is drawn from and accountable to the legislature (Parliament), unlike the US presidential system where the executive is separately elected. The President is head of state (largely ceremonial, with some reserve powers); the Prime Minister is head of government and holds real executive power.</p>
+    <p><strong>Parliament.</strong> Two houses: the Lok Sabha (House of the People, directly elected, 543 seats, holds real power including exclusive control over money bills) and the Rajya Sabha (Council of States, members elected by state legislatures, representing federal interests, cannot be dissolved, a quarter of members retire every two years). A government needs a majority in the Lok Sabha to stay in power.</p>
+    <p><strong>The judiciary.</strong> The Supreme Court sits at the top, followed by High Courts in each state, then subordinate courts. Indian courts have the power of judicial review — they can strike down laws that violate the Constitution — and the Supreme Court has developed the "Basic Structure Doctrine" (from the 1973 Kesavananda Bharati case), holding that even Parliament cannot amend the Constitution in ways that destroy its fundamental character, like democracy or secularism.</p>
+    <p><strong>Elections and the Election Commission.</strong> India holds the largest democratic elections in human history — over 900 million eligible voters as of recent general elections. The Election Commission of India is a constitutionally independent body responsible for conducting free and fair elections, and its independence from the ruling government of the day is considered one of the stronger institutional safeguards in Indian democracy.</p>
+    <p><strong>Panchayati Raj — local government.</strong> The 73rd and 74th Constitutional Amendments (1992) gave constitutional status to local self-government: Panchayats in rural areas, Municipalities in urban areas, with reserved seats for women (at least a third) and for Scheduled Castes and Scheduled Tribes, intended to bring governance closer to people who'd historically had the least access to it.</p>
+    <p><strong>Fundamental Rights and Directive Principles.</strong> The Constitution guarantees Fundamental Rights (equality, freedom of speech, freedom of religion, protection against exploitation, and more) that are legally enforceable in court. Directive Principles of State Policy are guidelines for governance (like promoting welfare, reducing inequality) that aren't legally enforceable but are meant to guide lawmaking — the tension between the two, and how courts have balanced them, is a recurring theme in Indian constitutional law.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Books on Indian polity</h3>
+      <p style="font-size:14px;">Introduction to the Constitution of India by D.D. Basu — the standard reference text used across Indian law and civil service preparation. Making of India's Constitution by Subhash Kashyap, a more accessible narrative version. India's Constitution itself is free and public at the Ministry of Law and Justice's website — reading the actual Preamble and Fundamental Rights sections directly is worth doing at least once.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u7" id="cbu7"><label for="cbu7">Mark this chapter done</label></div>
+  </section>
+  <section class="chapter-full" id="u8" data-category="polity" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">08 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">Ideas That Shaped Nations</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p><strong>Liberalism</strong> centers the individual — personal freedom, property rights, limited government, rule of law. It grew from Enlightenment thinkers like John Locke, who argued government exists only by the consent of the governed and exists to protect natural rights, a direct intellectual ancestor of most modern democratic constitutions, including India's.</p>
+    <p><strong>Socialism</strong> centers the collective — the belief that a society's resources and production should serve everyone's needs, not just reward private ownership, and that unregulated capitalism concentrates wealth and power unfairly. Karl Marx's critique of capitalism (with Friedrich Engels) argued that class conflict between workers and owners was the central force in history, and that it would eventually produce a classless society. In practice, socialist and communist states through the 20th century (Soviet Union, Maoist China) diverged sharply from Marx's own writing, often becoming authoritarian in ways his theory didn't specify.</p>
+    <p><strong>Nationalism</strong> centers the nation — the idea that people sharing language, culture, or history deserve a shared political identity and often a shared state. It powered anti-colonial independence movements worldwide (including India's own), but the same underlying logic also powered Nazi Germany's ethnic nationalism and continues to power both liberation movements and exclusionary politics today — nationalism itself isn't inherently one thing; what it's mobilized toward is what matters.</p>
+    <p><strong>Gandhian thought</strong> doesn't fit neatly into any Western category. Gandhi's core ideas — Satyagraha (truth-force, nonviolent resistance), Swaraj (self-rule, meaning both political independence and personal self-discipline), and Sarvodaya (welfare of all, influenced partly by Tolstoy and Ruskin) — combined a critique of British colonialism with a broader critique of industrial modernity itself. He wasn't simply anti-British; in "Hind Swaraj" (1909) he argued that industrial civilization itself, not just British rule specifically, was the deeper problem India needed to resist.</p>
+    <p><strong>Ambedkar's challenge to Gandhi.</strong> B.R. Ambedkar respected Gandhi's anti-colonial work but sharply disagreed with him on caste — Gandhi wanted to reform Hinduism from within to end untouchability while preserving the broader caste framework; Ambedkar considered the caste system itself irredeemable and eventually converted to Buddhism in 1956 along with hundreds of thousands of followers, arguing that real equality required leaving the religious structure that justified caste, not just reforming its practices.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">The primary texts, not just summaries</h3>
+      <p style="font-size:14px;">Two Treatises of Government by John Locke (liberalism's foundation, free online, public domain). The Communist Manifesto by Marx and Engels (short, genuinely readable, free online). Hind Swaraj by Gandhi (his own words, free online via Gandhi Ashram archives). Annihilation of Caste by B.R. Ambedkar (free online, arguably the single most important Indian political text of the 20th century).</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u8" id="cbu8"><label for="cbu8">Mark this chapter done</label></div>
+  </section>
+  <section class="chapter-full" id="u11" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">11 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">Japan's Empire — Korea and China</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p>Japan colonized Korea formally from 1910 to 1945, banning the Korean language in schools, forcing Koreans to adopt Japanese names, and conscripting Korean labor and soldiers. One of the most painful and still-contested legacies is the "comfort women" system — tens of thousands of women, many Korean but also Chinese, Filipina, and others, forced into sexual slavery for the Japanese military. Survivors began speaking publicly only in the 1990s, and the exact numbers, and whether Japan's various apologies and compensation offers have been adequate, remains an active diplomatic dispute between Japan and South Korea today.</p>
+    <p>Japan invaded Manchuria in 1931 and expanded into the rest of China through the 1930s. The Nanjing Massacre of December 1937-January 1938 is the starkest single event: Japanese forces killed an estimated 200,000-300,000 Chinese civilians and soldiers in and around the city of Nanjing over about six weeks, with mass rape and killing well documented by foreign witnesses present in the city at the time, including Western missionaries and diplomats who kept detailed records. Some nationalist voices in Japan have historically minimized or disputed the scale of Nanjing, which remains a genuine point of diplomatic friction between Japan and China to this day, though the core event itself is affirmed by extensive contemporaneous documentation from multiple nationalities present.</p>
+    <p>Japan's official reckoning with this history has been inconsistent — some Japanese prime ministers have issued formal apologies (notably 1995 and 2015 statements), while Japanese history textbooks have periodically been criticized, including by South Korea and China, for softening this period. This is worth understanding as a live, ongoing regional tension, not settled history.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">From the countries that lived it</h3>
+      <p style="font-size:14px;">The Rape of Nanking by Iris Chang, a Chinese-American journalist's account drawing heavily on survivor testimony and foreign witness records. True Stories of the Korean Comfort Women, a collection of survivor testimonies compiled by the Korean Council. Pachinko by Min Jin Lee, a novel following a Korean family through Japanese occupation and its aftermath — fiction, but grounded in real historical conditions.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u11" id="cbu11"><label for="cbu11">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter-full" id="u12" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">12 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">China and Tibet</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p>This one is genuinely, actively contested, so it's worth presenting both positions clearly rather than picking one. China's government position: Tibet has been part of Chinese territory for centuries under various dynasties, and the People's Liberation Army's 1950-51 entry into Tibet was a "peaceful liberation" reasserting existing Chinese sovereignty and modernizing a feudal, theocratic society. The Tibetan government-in-exile's position, led since 1959 by the 14th Dalai Lama from Dharamshala, India: Tibet was effectively independent for most of the early 20th century, the 1950 invasion was a military conquest, and China's rule since has involved suppression of Tibetan Buddhism, language, and culture, alongside large-scale ethnic Han Chinese migration into Tibetan regions that critics argue is deliberately diluting Tibetan cultural identity.</p>
+    <p>What's factually well-documented regardless of which framing you find more persuasive: a major Tibetan uprising against Chinese rule in 1959 was suppressed by force, after which the Dalai Lama fled to India, where he and a Tibetan exile government have remained ever since — India's hosting of this exile government has been a persistent point of tension in India-China relations. Human rights organizations, including groups with no formal stake in the political dispute, have documented restrictions on religious practice, surveillance, and, per multiple independent reports, forced relocation and labor programs in Tibetan areas in recent years, which the Chinese government disputes and frames as poverty alleviation and vocational training.</p>
+    <p>This connects directly to your own country: the 1962 Sino-Indian War was fought partly over disputed Himalayan border territory adjacent to Tibet, and China's presence in Tibet remains one of the central, ongoing factors in India-China border tension today, including the Line of Actual Control disputes still active in the news.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Both positions, directly</h3>
+      <p style="font-size:14px;">Freedom in Exile by the 14th Dalai Lama, his own autobiography and the clearest statement of the Tibetan exile position. Tibet, Tibet by Patrick French, a former pro-Tibet activist's own more critical, complicated reassessment after visiting Tibet directly. For China's official position, the Chinese government's own white papers on Tibet are publicly published and free to read, worth reading precisely because it's the primary source for that side, not a summary of it.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u12" id="cbu12"><label for="cbu12">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter-full" id="u13" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">13 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">Israel and Palestine — From the Beginning</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p>This is one of the most contested topics in the world, and honestly presenting it means giving you the timeline and letting the competing narratives sit side by side, rather than pretending there's one neutral summary everyone agrees on. I'll give you the sequence of events first, since the facts of what happened when are less disputed than their interpretation.</p>
+
+    <p><strong>Before 1948.</strong> The region called Palestine was part of the Ottoman Empire for centuries, home to a majority Arab Muslim and Christian population alongside a smaller Jewish population. After the Ottomans fell in WWI, Britain took control under a League of Nations mandate. In 1917, Britain issued the Balfour Declaration, publicly supporting "a national home for the Jewish people" in Palestine — a promise many historians note conflicted with commitments Britain had also made to Arab leaders regarding self-determination. Jewish immigration increased through the 1920s-40s, driven heavily by Zionism (the movement for a Jewish homeland, founded in the 1890s partly in response to European antisemitism) and then catastrophically accelerated by those fleeing the Holocaust. Tension and periodic violence between Arab and Jewish communities grew steadily through this period.</p>
+
+    <p><strong>1947-48 — Partition and the Nakba/War of Independence.</strong> The UN proposed partitioning Palestine into separate Jewish and Arab states in 1947; Jewish leadership accepted it, Arab leadership and neighboring Arab states rejected it, viewing it as unjust given the existing Arab majority population. Israel declared independence in May 1948; neighboring Arab states invaded the same day. Israel prevailed. This is remembered as the War of Independence in Israeli history. Palestinians call the same events the Nakba ("catastrophe") — an estimated 700,000 Palestinians were displaced from their homes, some fleeing violence, some expelled, depending on the location and historian consulted, and were never permitted to return, a refugee situation whose descendants, now numbering in the millions, remain a central unresolved issue.</p>
+
+    <p><strong>1948-1967.</strong> Further wars in 1956, and critically 1967 (the Six-Day War), in which Israel captured the West Bank, Gaza Strip, East Jerusalem, the Sinai Peninsula, and the Golan Heights from neighboring Arab states. Israel's occupation and later settlement of the West Bank, and its status, is one of the most disputed and internationally scrutinized issues in the conflict — most of the international community considers Israeli settlements in the West Bank illegal under international law; Israel disputes this characterization.</p>
+
+    <p><strong>1970s-1990s.</strong> The Palestine Liberation Organization (PLO), led by Yasser Arafat, became the primary Palestinian political and militant representative body, engaging in both diplomacy and armed conflict over the decades, including internationally condemned attacks on civilians. The Oslo Accords (1993) established limited Palestinian self-governance in parts of the West Bank and Gaza through the Palestinian Authority, intended as a step toward a two-state solution — a framework that has not been completed to this day, with continued settlement expansion, security barriers, and periodic violence on both sides eroding trust from each side toward the other.</p>
+
+    <p><strong>2000s-2023.</strong> Israel withdrew settlers and military from Gaza in 2005; Hamas, an Islamist militant group whose founding charter historically called for Israel's destruction (a later 2017 document softened some language while still not recognizing Israel), won Gaza's 2006 elections and has governed it since, including one violent takeover from the rival Fatah party in 2007. Israel and Egypt have maintained a blockade on Gaza since, which Israel says is necessary for security given Hamas's rocket attacks and tunnel networks, and which the UN and human rights groups have extensively documented as causing severe humanitarian conditions for Gaza's roughly 2 million residents. Multiple wars between Israel and Hamas occurred in this period (2008-09, 2012, 2014, 2021), each with disputed death tolls and disputed responsibility for civilian harm.</p>
+
+    <p><strong>October 7, 2023 and after.</strong> Hamas led an attack into southern Israel, killing around 1,200 people, mostly civilians, and taking roughly 250 hostages — the deadliest single day for Jewish people since the Holocaust. Israel responded with a sustained military campaign in Gaza that, as of the most recent widely cited figures, has killed over 40,000 Palestinians according to Gaza's Health Ministry (whose figures are cited by the UN while some parties dispute their precision), with the large majority reported as civilians, alongside a humanitarian crisis involving mass displacement and severe restrictions on food, medicine, and aid access that multiple international bodies have raised serious legal and humanitarian concerns about. Both the scale of the October 7 attack and the scale and conduct of Israel's response are subjects of intense, ongoing international legal and political dispute, including cases before the International Court of Justice and International Criminal Court, which are actively unresolved as this is written.</p>
+
+    <p>I'm not going to tell you who's right, because genuinely serious, well-informed people land in very different places on this, often depending on which parts of this history they weigh most heavily. What I'd encourage: read sources from both Israeli and Palestinian writers directly, not just Western commentary about the conflict, and hold the complexity rather than reaching for the simplest version of either side's story.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">Deliberately from both sides</h3>
+      <p style="font-size:14px;">The Question of Palestine by Edward Said, a Palestinian-American scholar's foundational articulation of the Palestinian narrative. My Promised Land by Ari Shavit, an Israeli journalist's own searching, self-critical history of Zionism and Israel. Side by Side, an Israeli-Palestinian joint history textbook project (PRIME) that literally prints both narratives on facing pages for the same events. Mornings in Jenin by Susan Abulhawa, a Palestinian-American novelist's fiction following one family across this entire timeline.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u13" id="cbu13"><label for="cbu13">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter-full" id="u10" data-category="history" style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:22px 22px 20px;margin-bottom:12px;">
+    <span class="num" style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);">10 — FULLY BUILT</span>
+    <h3 style="margin:6px 0 14px;font-size:19px;">The Cold War and the Age of Intervention</h3>
+    <div class="story" style="color:#2a1f13;font-size:15px;">
+    <p>After 1945, direct colonization mostly ended, but a new pattern took its place: two superpowers, the US and the Soviet Union, treated much of the world as a chessboard, backing governments, coups, or insurgencies that served their side of the Cold War, regardless of what the local population wanted. This chapter covers two of the clearest examples, since you asked for both directly.</p>
+
+    <p><strong>Afghanistan — invaded twice by two different superpowers.</strong> In 1979, the Soviet Union invaded Afghanistan to prop up a struggling communist government. The US, Pakistan, and Saudi Arabia funded and armed Afghan resistance fighters (the mujahideen) to bleed the Soviets — this covert program, run partly through the CIA, is where a young Osama bin Laden first became involved in Afghan resistance networks. The Soviets withdrew in 1989 after roughly a million Afghan deaths and their own significant losses; the country then fell into civil war, from which the Taliban emerged in the 1990s. After the September 11, 2001 attacks, the US invaded Afghanistan to remove the Taliban government, which had sheltered Al-Qaeda. That war lasted until 2021, when the US withdrew and the Taliban retook the country within weeks — one of the starkest examples in modern history of a 20-year foreign intervention ending with the exact group it was fought to remove back in power.</p>
+
+    <p><strong>Iraq, 2003 — the invasion built on weapons that didn't exist.</strong> In 2003, the United States and United Kingdom invaded Iraq, publicly justified by the claim that Saddam Hussein's government possessed weapons of mass destruction (WMD) and posed an imminent threat. No such weapons program was ever found after the invasion. A UK government inquiry (the Chilcot Report, published 2016) later concluded the decision to go to war was made before peaceful options were exhausted and that intelligence on WMD was presented with unwarranted certainty. Estimates of Iraqi deaths from the war and the chaos that followed range from roughly 150,000 to over 600,000 depending on the source and methodology, alongside the deaths of thousands of coalition soldiers, and the war destabilized the region in ways that directly enabled the rise of ISIS a decade later.</p>
+
+    <p>Both cases follow a pattern worth naming directly: a foreign power intervenes citing security or ideology, the intervention lasts far longer and costs far more (in lives and money) than promised, and the country is often left less stable than before, not more. This isn't a uniquely American pattern historically — the Soviets did the same in Afghanistan first — but it's the most relevant one for understanding the last 40 years of global politics, and it directly shapes the world Iran, Pakistan, and India all currently navigate.</p>
+    </div>
+    <div class="chapter-card" style="margin-top:16px;background:var(--surface-2);">
+      <span class="num">READING LIST</span>
+      <h3 style="font-size:15px;">From multiple sides</h3>
+      <p style="font-size:14px;">The Kite Runner and A Thousand Splendid Suns by Khaled Hosseini — an Afghan author's fiction, not journalism, but genuinely revealing of what decades of war did to ordinary Afghan life. Ghost Wars by Steve Coll, a deeply reported American journalist's account of the CIA's Afghanistan involvement from the Soviet war onward. Fiasco by Thomas Ricks, an American military journalist's own harsh account of the Iraq War's planning failures. The Chilcot Report itself is free and public if you want a primary government source rather than a book.</p>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="u10" id="cbu10"><label for="cbu10">Mark this chapter done</label></div>
+  </section>
+
   <div class="chapter-card" data-category="overview"><span class="num">09</span><h3>Cracking UPSC</h3><p>How the exam actually works — prelims, mains, interview — and where a journalism background gives you a real edge.</p><span class="tag">not yet written</span></div>
 
   <div class="notebook" data-category="currentaffairs">
@@ -1021,6 +1269,70 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
     <div class="cat"><label>Awards, reports & indices</label><textarea data-key="ca-awards"></textarea></div>
     <div class="savebar"><button id="saveBtn">Save notes</button><span class="status" id="saveStatus"></span></div>
   </div>
+
+</div>
+<div id="page-geo" class="page-section" data-course="geo">
+
+  <div class="eyebrow">A New Section</div>
+  <h1>Geopolitics & Bureaucracy</h1>
+  <p class="intro">Kept separate from History/Polity on purpose, since this is about the machinery of power right now — international relations theory, the institutions running global politics, ongoing flashpoints, and how bureaucracies actually function. Topic and book lists for now; tell me which block to turn into a full chapter first.</p>
+
+  <div class="block">
+    <h2>International Relations Theory</h2>
+    <div class="taglist">
+      <span>Realism</span><span>Liberalism (IR theory, distinct from political liberalism)</span><span>Constructivism</span><span>Balance of power</span><span>Containment</span><span>Deterrence</span><span>Multilateralism vs unilateralism</span><span>Soft power vs hard power</span>
+    </div>
+    <h3 class="sub">Books</h3>
+    <p class="book">The Tragedy of Great Power Politics by John Mearsheimer — the clearest statement of realist theory, that great powers inevitably compete for dominance.</p>
+    <p class="book">Soft Power by Joseph Nye — the scholar who coined the term, on influence without coercion.</p>
+    <p class="book">Diplomacy by Henry Kissinger — controversial figure, but the book itself is a serious history of how great-power diplomacy actually works.</p>
+  </div>
+
+  <div class="block">
+    <h2>Global Institutions</h2>
+    <div class="taglist">
+      <span>United Nations & Security Council veto power</span><span>IMF</span><span>World Bank</span><span>WTO</span><span>NATO</span><span>ASEAN</span><span>G7 / G20</span><span>BRICS</span><span>Quad (India-US-Japan-Australia)</span>
+    </div>
+    <p>Worth understanding specifically why the UN Security Council's five permanent members (US, UK, France, Russia, China) hold veto power and why reform of this structure — including India's long push for a permanent seat — remains stalled.</p>
+  </div>
+
+  <div class="block">
+    <h2>Current Flashpoints Worth Tracking</h2>
+    <div class="taglist">
+      <span>Russia-Ukraine war</span><span>Taiwan-China tension</span><span>South China Sea disputes</span><span>North Korea's nuclear program</span><span>Iran's nuclear program & sanctions</span><span>Sahel region coups (Mali, Niger, Burkina Faso)</span><span>Sudan civil war</span><span>India-China border (LAC) disputes</span>
+    </div>
+    <p>These change fast — treat this as a list of what to search for current context on, not something to memorize a fixed answer for.</p>
+  </div>
+
+  <div class="block">
+    <h2>India's Foreign Policy</h2>
+    <div class="taglist">
+      <span>Non-Alignment (historical) to multi-alignment (current)</span><span>Neighbourhood First policy</span><span>Act East policy</span><span>India-US relations</span><span>India-Russia relations</span><span>India in the Quad</span>
+    </div>
+    <h3 class="sub">Books</h3>
+    <p class="book">Choices: Inside the Making of India's Foreign Policy by Shivshankar Menon, a former National Security Advisor's own account.</p>
+    <p class="book">India's Foreign Policy by Rajiv Sikri, a former diplomat's broader overview.</p>
+  </div>
+
+  <div class="block">
+    <h2>Bureaucracy — the theory of how administration works</h2>
+    <div class="taglist">
+      <span>Max Weber's rational-legal authority</span><span>Hierarchy & rules-based administration</span><span>Red tape</span><span>New Public Management</span><span>E-governance</span><span>Accountability & transparency</span>
+    </div>
+    <p>Weber's theory (early 1900s) argued that modern bureaucracy, for all its frustrations, was actually a rational improvement over rule by personal favor or tradition — impersonal rules applied consistently are fairer than a ruler's mood, even when they're slow.</p>
+    <h3 class="sub">Books</h3>
+    <p class="book">Economy and Society by Max Weber — dense, but the original source for bureaucratic theory.</p>
+    <p class="book">Reinventing Government by David Osborne and Ted Gaebler, for the more modern "New Public Management" critique of traditional bureaucracy.</p>
+  </div>
+
+  <div class="block">
+    <h2>India's Civil Service Structure</h2>
+    <div class="taglist">
+      <span>IAS / IPS / IFS — the All India Services</span><span>Central Civil Services</span><span>The cadre system</span><span>Right to Information Act, 2005</span><span>Civil service neutrality</span>
+    </div>
+    <p>Understanding the difference between All India Services (IAS, IPS, IFoS — officers serve state cadres but are recruited and can be deployed centrally) and Central Services (which work only for the central government) is a genuinely useful, often-tested distinction.</p>
+  </div>
+
 
 </div>
 <div id="page-math" class="page-section" data-course="math">
@@ -1404,19 +1716,191 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
 </div>
 <div id="page-music" class="page-section" data-course="music">
 
-  <div class="eyebrow">Course 04</div>
+  <div class="eyebrow">Course 04 — Fully Built</div>
   <h1>Music, from the Beginning</h1>
-  <p class="intro">Where music actually came from, how instruments were invented across different parts of the world, and a proper tour through both global and Indian traditions — folk, classical, and the artists worth knowing, lyrics read the way you'd read a poem.</p>
+  <p class="intro">Nine chapters, purely for the love of it. Where music started, how instruments came to be, the world's major traditions, and India's own, from classical to film. Read one, listen along, take the quiz.</p>
 
-  <div class="chapter-card"><span class="num">01</span><h3>Where Sound Became Music</h3><p>The origins of music as a human practice, long before instruments existed.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">02</span><h3>Instruments of the World</h3><p>String, wind, and percussion families, and where each one was first built.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">03</span><h3>Western Classical, from Chant to Symphony</h3><p>How European classical music developed across centuries.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">04</span><h3>Jazz, Blues, and the American Sound</h3><p>Where American popular music actually comes from.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">05</span><h3>Indian Classical — Hindustani and Carnatic</h3><p>The two major classical traditions of India, and how they differ.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">06</span><h3>India's Folk Traditions</h3><p>Region by region — Rajasthan, Punjab, Bengal, the South, and beyond.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">07</span><h3>Bollywood and Beyond</h3><p>The history of Indian film music, and regional film music traditions too.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">08</span><h3>Reading Lyrics Like Poetry</h3><p>How to actually read into what a song is saying, the way it's taught in a classroom.</p><span class="tag">not yet written</span></div>
-  <div class="chapter-card"><span class="num">09</span><h3>Artists Worth Knowing</h3><p>A global and Indian list, spanning genres and eras.</p><span class="tag">not yet written</span></div>
+  <section class="chapter" id="mu1">
+    <div class="chapter-head"><span class="frame-num">01</span><h2>Where Sound Became Music</h2></div>
+    <div class="story">
+      <p>The oldest known musical instrument is a flute carved from a vulture's wing bone, found in a cave in Germany, dated to roughly 40,000 years ago — meaning humans were making deliberate, tuned music before agriculture, before writing, before almost everything we think of as civilization. Before instruments, though, music almost certainly started with the human voice and body: rhythmic clapping, chanting, humming. Every human culture ever studied has some form of music, which is part of why many anthropologists believe music isn't a lucky invention but something close to a built-in human trait, the same way language is.</p>
+      <p>Early music wasn't entertainment in the way we think of it now — it was functional. Work songs coordinated group labor and made repetitive tasks bearable. Lullabies soothed infants. Ritual chants and drumming accompanied religious and healing ceremonies across nearly every ancient culture, from Aboriginal Australian songlines (which encoded actual navigational maps across the continent) to Vedic chanting in ancient India, among the oldest continuously practiced vocal traditions in the world.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Listen to any music today and try to strip it back mentally to just rhythm and voice — no instruments, no production. Notice what's actually holding the song together underneath everything else.</p></div>
+    <div class="quiz" data-quiz="mu1"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">The oldest known musical instrument is roughly how old?</p>
+        <label><input type="radio" name="mu1-q1" value="a"> 4,000 years</label>
+        <label><input type="radio" name="mu1-q1" value="b"> 40,000 years</label>
+        <label><input type="radio" name="mu1-q1" value="c"> 400 years</label></div>
+      <div class="q" data-answer="a"><p class="qtext">Early music across cultures was mainly used for:</p>
+        <label><input type="radio" name="mu1-q2" value="a"> Functional and ritual purposes</label>
+        <label><input type="radio" name="mu1-q2" value="b"> Pure entertainment only</label>
+        <label><input type="radio" name="mu1-q2" value="c"> It didn't exist before instruments</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu1" id="cbmu1"><label for="cbmu1">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu2">
+    <div class="chapter-head"><span class="frame-num">02</span><h2>Instruments of the World</h2></div>
+    <div class="story">
+      <p>Nearly every instrument on earth falls into one of a few families. Strings (violin, sitar, guitar, veena) produce sound from vibrating strings. Winds (flute, shehnai, saxophone) from vibrating air columns. Percussion (tabla, djembe, drums) from struck surfaces. This classification system, developed by Erich von Hornbostel and Curt Sachs in 1914, is still the standard used by ethnomusicologists worldwide, precisely because it works across cultures rather than just Western instruments.</p>
+      <p>Where instruments were invented often tracks materials available locally: African djembes and talking drums grew from abundant hardwood and animal hide. The Indian sitar evolved from Persian instruments brought by Mughal court musicians, then was reshaped with Indian design (the gourd resonator, sympathetic strings that vibrate without being played directly). The Australian didgeridoo comes from eucalyptus branches naturally hollowed out by termites. Instruments are, in a real sense, a region's geology and biology turned into sound.</p>
+    </div>
+    <div class="quiz" data-quiz="mu2"><h3>Quick check</h3>
+      <div class="q" data-answer="c"><p class="qtext">The Hornbostel-Sachs system classifies instruments by:</p>
+        <label><input type="radio" name="mu2-q1" value="a"> Country of origin</label>
+        <label><input type="radio" name="mu2-q1" value="b"> Price</label>
+        <label><input type="radio" name="mu2-q1" value="c"> How they physically produce sound</label></div>
+      <div class="q" data-answer="a"><p class="qtext">The didgeridoo is traditionally made from:</p>
+        <label><input type="radio" name="mu2-q2" value="a"> Eucalyptus branches hollowed by termites</label>
+        <label><input type="radio" name="mu2-q2" value="b"> Animal horns</label>
+        <label><input type="radio" name="mu2-q2" value="c"> Bamboo only</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu2" id="cbmu2"><label for="cbmu2">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu3">
+    <div class="chapter-head"><span class="frame-num">03</span><h2>Western Classical, from Chant to Symphony</h2></div>
+    <div class="story">
+      <p>Western classical music's written tradition starts with Gregorian chant, monophonic (single melodic line, no harmony) sacred music sung in medieval European monasteries. The Baroque era (roughly 1600-1750), with Johann Sebastian Bach as its towering figure, introduced complex harmony and counterpoint — multiple independent melodic lines woven together. The Classical era (Mozart, Haydn, roughly 1750-1820) favored clarity, balance, and structure — the symphony and sonata forms crystallized here. The Romantic era (Beethoven bridges into it, then Chopin, Tchaikovsky, Brahms, through the 1800s) prized emotional intensity and individual expression over formal restraint, mirroring the era's broader cultural shift toward Romanticism in literature and art.</p>
+      <p>Beethoven himself is often taught as the hinge between eras — trained in the Classical tradition but pushing it toward Romantic expressiveness, famously continuing to compose major works, including his Ninth Symphony, after becoming completely deaf.</p>
+    </div>
+    <div class="quiz" data-quiz="mu3"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">Gregorian chant is:</p>
+        <label><input type="radio" name="mu3-q1" value="a"> A modern pop genre</label>
+        <label><input type="radio" name="mu3-q1" value="b"> Single-line medieval sacred chant</label>
+        <label><input type="radio" name="mu3-q1" value="c"> An Indian classical form</label></div>
+      <div class="q" data-answer="a"><p class="qtext">Beethoven is often described as the bridge between which two eras?</p>
+        <label><input type="radio" name="mu3-q2" value="a"> Classical and Romantic</label>
+        <label><input type="radio" name="mu3-q2" value="b"> Baroque and Jazz</label>
+        <label><input type="radio" name="mu3-q2" value="c"> Medieval and Baroque</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu3" id="cbmu3"><label for="cbmu3">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu4">
+    <div class="chapter-head"><span class="frame-num">04</span><h2>Jazz, Blues, and the American Sound</h2></div>
+    <div class="story">
+      <p>Blues emerged from African American communities in the Mississippi Delta in the late 1800s and early 1900s, growing directly out of work songs, spirituals, and field hollers sung under slavery and its aftermath. Its structure (typically a 12-bar chord pattern) and its emotional core — bearing witness to hardship through song — became the root of nearly all American popular music that followed.</p>
+      <p>Jazz emerged around the same period in New Orleans, a genuinely unique cultural crossroads of African rhythmic traditions, European harmony and instruments, and Caribbean influence. Its defining feature is improvisation — musicians composing in real time within a shared structure, not just performing something pre-written. Louis Armstrong popularized the improvised solo as a central feature; Duke Ellington elevated big-band jazz to serious orchestral composition. Both blues and jazz then fed directly into rock and roll, soul, and hip-hop across the 20th century — almost the entire tree of modern popular music traces back to these two roots.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Listen to one early blues recording (search "Robert Johnson" or "Bessie Smith") and one early jazz recording (search "Louis Armstrong Hot Five"), back to back, and notice how differently they use rhythm even though they emerged from the same era and region.</p></div>
+    <div class="quiz" data-quiz="mu4"><h3>Quick check</h3>
+      <div class="q" data-answer="c"><p class="qtext">Blues grew directly out of:</p>
+        <label><input type="radio" name="mu4-q1" value="a"> European court music</label>
+        <label><input type="radio" name="mu4-q1" value="b"> Classical symphonies</label>
+        <label><input type="radio" name="mu4-q1" value="c"> Work songs and spirituals</label></div>
+      <div class="q" data-answer="a"><p class="qtext">The defining feature of jazz is:</p>
+        <label><input type="radio" name="mu4-q2" value="a"> Improvisation</label>
+        <label><input type="radio" name="mu4-q2" value="b"> Always being played solo</label>
+        <label><input type="radio" name="mu4-q2" value="c"> No rhythm section</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu4" id="cbmu4"><label for="cbmu4">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu5">
+    <div class="chapter-head"><span class="frame-num">05</span><h2>Indian Classical — Hindustani and Carnatic</h2></div>
+    <div class="story">
+      <p>India has two major classical traditions, split roughly along a north-south line since around the 12th-13th century, when Persian and Central Asian influence began reshaping North Indian (Hindustani) music while South Indian (Carnatic) music retained a more continuous connection to ancient Sanskrit musical texts. Both share the foundational concepts of raga (a melodic framework, more like a mood-scale than a fixed tune, that a musician improvises within) and tala (rhythmic cycle, counted in beats that repeat).</p>
+      <p>Hindustani music organizes around gharanas — musical lineages or schools, each with a distinct style, passed teacher to student over generations (the Gwalior, Kirana, and Patiala gharanas are among the most prominent). Instruments include the sitar, sarod, tabla, and bansuri. Carnatic music is more composition-centered, built heavily on the works of the "Trinity" of 18th-19th century composers — Tyagaraja, Muthuswami Dikshitar, and Syama Sastri — and features instruments like the veena, mridangam, and violin (adapted into Carnatic music from European contact, then made entirely its own).</p>
+    </div>
+    <div class="quiz" data-quiz="mu5"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">A raga is best understood as:</p>
+        <label><input type="radio" name="mu5-q1" value="a"> A fixed, unchanging melody</label>
+        <label><input type="radio" name="mu5-q1" value="b"> A melodic framework a musician improvises within</label>
+        <label><input type="radio" name="mu5-q1" value="c"> A type of drum</label></div>
+      <div class="q" data-answer="a"><p class="qtext">Carnatic music's "Trinity" refers to:</p>
+        <label><input type="radio" name="mu5-q2" value="a"> Three major 18th-19th century composers</label>
+        <label><input type="radio" name="mu5-q2" value="b"> Three instruments</label>
+        <label><input type="radio" name="mu5-q2" value="c"> Three gharanas</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>Raga Mala by Ravi Shankar, his own autobiography and the most accessible entry point into Hindustani music from inside it. The Music Room by Namita Devidayal, a memoir of studying under a Hindustani classical teacher in Bombay, genuinely beautiful writing about what it means to inherit a musical tradition.</p></div>
+    <div class="track-row"><input type="checkbox" data-key="mu5" id="cbmu5"><label for="cbmu5">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu6">
+    <div class="chapter-head"><span class="frame-num">06</span><h2>India's Folk Traditions</h2></div>
+    <div class="story">
+      <p>Rajasthan's Manganiyar and Langa communities are hereditary professional musicians, traditionally performing for patron families across generations, with a repertoire of devotional and folk songs passed down orally — genuinely relevant to you given your own Rajasthan-set project. Punjab's folk tradition centers on bhangra (originally a harvest-festival dance/music form, long before it became a global pop-adjacent genre) and the dhol drum. Bengal's Baul tradition is a mystic folk practice, wandering minstrel-poets singing philosophical, often Sufi-and-Vaishnav-influenced songs about the soul and the divine, accompanied by the ektara, a one-stringed instrument. The Northeast has entirely distinct traditions again, often closer musically to Southeast Asian influences than to mainland Indian classical forms.</p>
+    </div>
+    <div class="task"><span class="tag">Try this</span><p>Search for a Manganiyar performance video — many are filmed live in Rajasthan itself — and watch a full song, paying attention to how the group vocal call-and-response works.</p></div>
+    <div class="quiz" data-quiz="mu6"><h3>Quick check</h3>
+      <div class="q" data-answer="a"><p class="qtext">Manganiyar and Langa musicians are traditionally from which region?</p>
+        <label><input type="radio" name="mu6-q1" value="a"> Rajasthan</label>
+        <label><input type="radio" name="mu6-q1" value="b"> Kerala</label>
+        <label><input type="radio" name="mu6-q1" value="c"> Punjab</label></div>
+      <div class="q" data-answer="b"><p class="qtext">The Baul tradition of Bengal is centered on:</p>
+        <label><input type="radio" name="mu6-q2" value="a"> Court classical music</label>
+        <label><input type="radio" name="mu6-q2" value="b"> Wandering mystic folk singers</label>
+        <label><input type="radio" name="mu6-q2" value="c"> Film music</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu6" id="cbmu6"><label for="cbmu6">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu7">
+    <div class="chapter-head"><span class="frame-num">07</span><h2>Bollywood and Beyond</h2></div>
+    <div class="story">
+      <p>Hindi film music's "Golden Age" (roughly 1950s-70s) produced composers like S.D. Burman and later his son R.D. Burman, who fused Indian classical and folk elements with Latin rhythms, rock, and funk, often years ahead of what mainstream Western pop was doing with similar fusions. Lata Mangeshkar and her sister Asha Bhosle, as playback singers (voices recorded separately and lip-synced by on-screen actors, a uniquely Indian film music convention), between them sang for literally thousands of films across decades, becoming arguably the most recorded voices in music history.</p>
+      <p>Regional film music industries developed their own distinct identities, worth knowing separately: Ilaiyaraaja transformed Tamil film music from the 1970s onward, incorporating Western classical orchestration in ways that were genuinely radical for the industry at the time. A.R. Rahman later did something similar for both Tamil and Hindi cinema starting in the 1990s, blending electronic production with Carnatic and Sufi elements. These aren't lesser versions of "Bollywood" — Tamil, Telugu, Malayalam, and Bengali film music industries each have their own serious, independent musical lineages.</p>
+    </div>
+    <div class="quiz" data-quiz="mu7"><h3>Quick check</h3>
+      <div class="q" data-answer="b"><p class="qtext">"Playback singing" refers to:</p>
+        <label><input type="radio" name="mu7-q1" value="a"> Singing live on stage only</label>
+        <label><input type="radio" name="mu7-q1" value="b"> A voice recorded separately and lip-synced on screen</label>
+        <label><input type="radio" name="mu7-q1" value="c"> A type of instrument</label></div>
+      <div class="q" data-answer="a"><p class="qtext">Ilaiyaraaja is most associated with which industry?</p>
+        <label><input type="radio" name="mu7-q2" value="a"> Tamil cinema</label>
+        <label><input type="radio" name="mu7-q2" value="b"> Bengali cinema</label>
+        <label><input type="radio" name="mu7-q2" value="c"> Punjabi cinema</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu7" id="cbmu7"><label for="cbmu7">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu8">
+    <div class="chapter-head"><span class="frame-num">08</span><h2>Reading Lyrics Like Poetry</h2></div>
+    <div class="story">
+      <p>Reading a lyric closely means asking the same questions you'd ask of a poem: what's the central image or metaphor, and what does it stand in for? Who is the speaker, and are they the same as the songwriter? What's left unsaid, and why might that silence matter as much as the words? A love song about rain, for instance, might be using weather as a metaphor for a mood impossible to name directly — and the specific choice of rain over, say, sunlight, is itself meaningful and worth sitting with rather than skimming past.</p>
+      <p>It's also worth reading a lyric on the page, separate from the melody, at least once. Melody can carry a weak lyric further than it deserves, and a genuinely strong lyric can survive being read flat, without music, the way a good poem does.</p>
+    </div>
+    <div class="task"><span class="tag">Try this — your final assignment</span><p>Pick one song lyric you already love. Write it out by hand, without the music playing, and read it as a poem. Note the central image, and one line you think is doing more work than it first seems to.</p></div>
+    <div class="quiz" data-quiz="mu8"><h3>Quick check</h3>
+      <div class="q" data-answer="c"><p class="qtext">Reading a lyric "like a poem" mainly means asking:</p>
+        <label><input type="radio" name="mu8-q1" value="a"> Whether it charted well</label>
+        <label><input type="radio" name="mu8-q1" value="b"> How fast the tempo is</label>
+        <label><input type="radio" name="mu8-q1" value="c"> What the imagery and unsaid parts might mean</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu8" id="cbmu8"><label for="cbmu8">Mark this chapter done</label></div>
+  </section>
+
+  <section class="chapter" id="mu9">
+    <div class="chapter-head"><span class="frame-num">09</span><h2>Artists Worth Knowing</h2></div>
+    <div class="story">
+      <p><strong>Global:</strong> Nina Simone (voice and piano turned into direct political testimony). Bob Dylan (lyricism that got popular songwriting taken seriously as literature, Nobel Prize in Literature, 2016). Fela Kuti (Afrobeat's founder, fused jazz, funk, and Yoruba music into direct political protest against Nigeria's military government). Miriam Makeba (South African singer who became a global voice against apartheid). Umm Kulthum (Egyptian singer, arguably the most significant voice in modern Arabic music, whose live radio broadcasts reportedly emptied streets across the Arab world).</p>
+      <p><strong>India:</strong> Ravi Shankar (sitar, brought Hindustani classical music to global audiences). M.S. Subbulakshmi (Carnatic vocalist, the first musician to be awarded India's highest civilian honor, the Bharat Ratna). Bhimsen Joshi (Hindustani vocal, Kirana gharana). Kishori Amonkar (Hindustani vocal, known for her deeply personal, emotionally raw interpretation of ragas). Nusrat Fateh Ali Khan (Pakistani, but essential to understanding qawwali, the devotional Sufi music tradition shared across the subcontinent).</p>
+    </div>
+    <div class="task" style="border-color:#8a6a3a;"><span class="tag" style="color:#8a6a3a;">Reading list</span><p>Chronicles by Bob Dylan, his own account of his creative life. My Music, My Life by Ravi Shankar. Umm Kulthum: Artist and Icon of Arab Culture by Virginia Danielson, an academic but genuinely fascinating account of how one singer became a symbol of an entire region's modern identity.</p></div>
+    <div class="quiz" data-quiz="mu9"><h3>Quick check</h3>
+      <div class="q" data-answer="a"><p class="qtext">Fela Kuti is most associated with:</p>
+        <label><input type="radio" name="mu9-q1" value="a"> Afrobeat and political protest music in Nigeria</label>
+        <label><input type="radio" name="mu9-q1" value="b"> Hindustani classical music</label>
+        <label><input type="radio" name="mu9-q1" value="c"> American jazz only</label></div>
+      <div class="q" data-answer="b"><p class="qtext">M.S. Subbulakshmi was the first musician to receive:</p>
+        <label><input type="radio" name="mu9-q2" value="a"> A Grammy</label>
+        <label><input type="radio" name="mu9-q2" value="b"> The Bharat Ratna</label>
+        <label><input type="radio" name="mu9-q2" value="c"> A Nobel Prize</label></div>
+      <button class="quizCheck">Check my answers</button><div class="quizResult"></div>
+    </div>
+    <div class="track-row"><input type="checkbox" data-key="mu9" id="cbmu9"><label for="cbmu9">Mark this chapter done</label></div>
+  </section>
+
 
 </div>
 <div id="page-coffee" class="page-section" data-course="coffee">
@@ -1582,7 +2066,6 @@ main > p.intro{color:var(--muted);font-size:15.5px;max-width:62ch;margin:0 0 30p
 </div>
 
 
-
 <script>
 function showPage(name){
   document.querySelectorAll('.page-section').forEach(el=>el.classList.remove('active'));
@@ -1593,7 +2076,6 @@ function showPage(name){
   if(btn) btn.classList.add('active');
   window.scrollTo({top:0, behavior:'instant'});
 }
-
 document.addEventListener('click', function(e){
   const btn = e.target.closest('.quizCheck');
   if(!btn) return;
@@ -1618,23 +2100,14 @@ document.addEventListener('click', function(e){
   const result = quiz.querySelector('.quizResult');
   if(result) result.textContent = correctCount + ' / ' + qs.length + ' correct';
 });
-
 const storageKey = 'vini-school-progress';
 async function loadAll(){ try{ const r = await window.storage.get(storageKey, false); return r ? JSON.parse(r.value) : {}; } catch(e){ return {}; } }
 async function saveAll(state){ try{ await window.storage.set(storageKey, JSON.stringify(state), false); }catch(e){} }
-
 function applyDoneState(state){
-  document.querySelectorAll('input[type=checkbox][data-key]').forEach(cb=>{
-    if(state[cb.dataset.key] !== undefined) cb.checked = !!state[cb.dataset.key];
-  });
-  document.querySelectorAll('textarea[data-key]').forEach(ta=>{
-    if(state[ta.dataset.key] !== undefined) ta.value = state[ta.dataset.key];
-  });
-  document.querySelectorAll('.chapter-tile[data-key]').forEach(tile=>{
-    tile.classList.toggle('done', !!state[tile.dataset.key]);
-  });
+  document.querySelectorAll('input[type=checkbox][data-key]').forEach(cb=>{ if(state[cb.dataset.key] !== undefined) cb.checked = !!state[cb.dataset.key]; });
+  document.querySelectorAll('textarea[data-key]').forEach(ta=>{ if(state[ta.dataset.key] !== undefined) ta.value = state[ta.dataset.key]; });
+  document.querySelectorAll('.chapter-tile[data-key]').forEach(tile=>{ tile.classList.toggle('done', !!state[tile.dataset.key]); });
 }
-
 function openChapter(courseKey, chapterId){
   const page = document.getElementById('page-'+courseKey);
   if(!page) return;
@@ -1646,17 +2119,11 @@ function openChapter(courseKey, chapterId){
   const catFilter = page.querySelector('.cat-filter');
   if(catFilter) catFilter.style.display = 'none';
   let back = page.querySelector('.chapter-back');
-  if(!back){
-    back = document.createElement('button');
-    back.className = 'chapter-back';
-    back.textContent = '\u2190 back to chapters';
-    page.insertBefore(back, page.firstChild.nextSibling);
-  }
+  if(!back){ back = document.createElement('button'); back.className = 'chapter-back'; back.textContent = '\u2190 back to chapters'; page.insertBefore(back, page.firstChild.nextSibling); }
   back.style.display = 'block';
   back.onclick = function(){ closeChapter(courseKey); };
   window.scrollTo({top:0, behavior:'instant'});
 }
-
 function closeChapter(courseKey){
   const page = document.getElementById('page-'+courseKey);
   if(!page) return;
@@ -1669,26 +2136,20 @@ function closeChapter(courseKey){
   if(back) back.style.display = 'none';
   window.scrollTo({top:0, behavior:'instant'});
 }
-
 function filterCategory(courseKey, cat){
   const page = document.getElementById('page-'+courseKey);
   if(!page) return;
   page.querySelectorAll('.cat-filter button').forEach(b=>b.classList.toggle('active', b.dataset.cat===cat));
-  page.querySelectorAll('.chapter-tile-grid .chapter-tile').forEach(tile=>{
-    tile.style.display = (cat==='all' || tile.dataset.category===cat) ? '' : 'none';
-  });
+  page.querySelectorAll('.chapter-tile-grid .chapter-tile').forEach(tile=>{ tile.style.display = (cat==='all' || tile.dataset.category===cat) ? '' : 'none'; });
 }
-
 function buildTileMenus(){
   document.querySelectorAll('.page-section[data-course]').forEach(page=>{
     const courseKey = page.dataset.course;
     const builtChapters = Array.from(page.querySelectorAll(':scope .chapter, :scope .chapter-full'));
     const skeletonCards = Array.from(page.querySelectorAll(':scope .chapter-card'));
     if(builtChapters.length === 0 && skeletonCards.length === 0) return;
-
     const grid = document.createElement('div');
     grid.className = 'chapter-tile-grid';
-
     const hasCategories = skeletonCards.some(c=>c.dataset.category) || builtChapters.some(c=>c.dataset.category);
     let catFilterEl = null;
     if(hasCategories){
@@ -1706,7 +2167,6 @@ function buildTileMenus(){
         catFilterEl.appendChild(b);
       });
     }
-
     builtChapters.forEach((chEl, idx)=>{
       const id = chEl.id || (courseKey+'-b'+idx);
       const wrapperId = id + '-view';
@@ -1718,7 +2178,6 @@ function buildTileMenus(){
       const num = numEl ? numEl.textContent.trim() : String(idx+1).padStart(2,'0');
       const checkbox = chEl.querySelector('input[type=checkbox][data-key]');
       const key = checkbox ? checkbox.dataset.key : null;
-
       const tile = document.createElement('button');
       tile.className = 'chapter-tile';
       if(key) tile.dataset.key = key;
@@ -1727,7 +2186,6 @@ function buildTileMenus(){
       tile.onclick = function(){ openChapter(courseKey, wrapperId.replace('-view','')); };
       grid.appendChild(tile);
     });
-
     skeletonCards.forEach((cardEl)=>{
       const numEl = cardEl.querySelector('.num');
       const titleEl = cardEl.querySelector('h3');
@@ -1740,14 +2198,12 @@ function buildTileMenus(){
       grid.appendChild(tile);
       cardEl.style.display = 'none';
     });
-
     const introEl = page.querySelector('p.intro, .home-hero');
     let insertAfter = introEl || page.firstElementChild;
     if(catFilterEl) insertAfter.parentNode.insertBefore(catFilterEl, insertAfter.nextSibling);
     (catFilterEl || insertAfter).parentNode.insertBefore(grid, (catFilterEl || insertAfter).nextSibling);
   });
 }
-
 (async function init(){
   buildTileMenus();
   const state = await loadAll();
@@ -1772,7 +2228,6 @@ function buildTileMenus(){
   }
 })();
 </script>
-
 
 </body>
 </html>
